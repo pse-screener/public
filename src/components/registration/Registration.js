@@ -5,49 +5,14 @@ import Alert from '../Alert';
 import $ from 'jquery';
 import Recaptcha from 'react-recaptcha';
 
-const sitekey = '6LfIjBgTAAAAAPvzbsaT1ACX6tkQpsldCRM9Fz1r';
-
-function getProvincesList() {
-    return {
-        provinces: RegistrationStore.getProvincesList()
-    }
-}
-
-function getCitiesList() {
-    return {
-        cities: RegistrationStore.getCitiesList()
-    }
-}
+const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
 
 let Registration = {
     getInitialState: function() {
-        return { provinces: null,
-            cities: null,
+        return {
             displayAlert: false,
             errorMessage: ""
         };
-    },
-    componentWillMount: function() {
-        RegistrationActionCreator.getProvinces();
-    },
-    componentDidMount: function() {
-        RegistrationStore.addChangeListener(this._onFetchedProvinces);
-        RegistrationStore.addChangeListener(this._renderOnSelectedProvince);
-        this.refs.company.focus();
-    },
-    // it is always a good idea to remove listener when unmounting
-    componentWillUnmount: function() {
-        RegistrationStore.removeChangeListener(this._onFetchedProvinces);
-        RegistrationStore.removeChangeListener(this._renderOnSelectedProvince);
-    },
-    _onFetchedProvinces: function() {
-        this.setState(getProvincesList());
-    },
-    _onSelectedProvince: function() {
-        RegistrationActionCreator.getCitiesByProvinceId(this.refs.province.value);
-    },
-    _renderOnSelectedProvince: function() {
-        this.setState(getCitiesList());
     },
     _onSubmit: function(e) {
         e.preventDefault();
@@ -56,41 +21,20 @@ let Registration = {
 
         let formComponent = $('#form'), data = {};
 
-        let company = this.refs.company.value.trim(),
-        phoneNo = this.refs.phoneNo.value.trim(),
-        companyWebsite = this.refs.companyWebsite.value.trim(),
-        tin = this.refs.tin.value.trim(),
+        let mobileNo = this.refs.mobileNo.value.trim(),
         fName = this.refs.fName.value.trim(),
         lName = this.refs.lName.value.trim(),
-        userEmail = this.refs.userEmail.value.trim(),
-        province = this.refs.province.value.trim(),
-        city = this.refs.city.value.trim(),
+        email = this.refs.email.value.trim(),
         gender = this.refs.gender.value.trim(),
         password = this.refs.password.value.trim(),
-        confirmPassword = this.refs.confirmPassword.value.trim();
+        password_confirmation = this.refs.password_confirmation.value.trim();
 
-        if (province == 0) {
-            this.state.errorMessage = "Please choose province.";
-            this.state.displayAlert = true;
-        }
-        if (city == 0) {
-            this.state.errorMessage = "Please choose city.";
-            this.state.displayAlert = true;
-        }
         if (gender === 0) {
             this.state.errorMessage = "Please choose your gender.";
             this.state.displayAlert = true;
         }
-        if (company.length < 2) {
-            this.state.errorMessage = "Invalid company name.";
-            this.state.displayAlert = true;
-        }
-        if (phoneNo.length < 7) {
-            this.state.errorMessage = "Invalid phone number.";
-            this.state.displayAlert = true;
-        }
-        if (tin.length < 12) {
-            this.state.errorMessage = "Invalid company TIN.";
+        if (mobileNo.length < 7) {
+            this.state.errorMessage = "Invalid mobile number.";
             this.state.displayAlert = true;
         }
         if (fName.length < 2) {
@@ -101,7 +45,7 @@ let Registration = {
             this.state.errorMessage = "Invalid last name.";
             this.state.displayAlert = true;
         }
-        if (userEmail.length < 6) {
+        if (email.length < 6) {
             this.state.errorMessage = "Invalid Email.";
             this.state.displayAlert = true;
         }
@@ -109,11 +53,11 @@ let Registration = {
             this.state.errorMessage = "Password should be at least 6 alphanumeric characters.";
             this.state.displayAlert = true;
         }
-        if (confirmPassword.length < 6) {
+        if (password_confirmation.length < 6) {
             this.state.errorMessage = "Password should be at least 6 alphanumeric characters.";
             this.state.displayAlert = true;
         }
-        if (password !== confirmPassword) {
+        if (password !== password_confirmation) {
             this.state.errorMessage = "Password and confirm password are not the same.";
             this.state.displayAlert = true;
         }
@@ -128,27 +72,9 @@ let Registration = {
             RegistrationActionCreator.onSubmit(data);        
     },
     _onCancel: function() {
-        //let formComponent = $('#form');
         this.refs.registrationForm.getDOMNode().reset;
-
-        /*formComponent.find('[name]').each(function(index, component) {
-            component.value = "";
-        });*/
     },
 	render: function() {
-        let renderProvinces = null, renderCities = null;
-
-        if (this.state.provinces) {
-            renderProvinces = this.state.provinces.map((province, index) => {
-                return (<option value={province.id} key={index}>{province.provinceName}</option>);
-            });
-        }
-        if (this.state.cities) {
-            renderCities = this.state.cities.map((city, index) => {
-                return (<option value={city.id} key={index}>{city.cityName}</option>);
-            });
-        }
-
 		return (<div className="container">
 				<div className="row">
             <div className="col-sm-6">
@@ -159,62 +85,6 @@ let Registration = {
                 <hr />
 
                 <form className="form-horizontal" id="form" ref="registrationForm" method="post" action="#">
-                    <h5>Company Details</h5><hr />
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="company">Company name</label>
-                        <div className="col-sm-9">
-                            <input className="form-control" type="text" ref="company" id="company" name="company" placeholder="Company name" />
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="province">Province</label>
-                        <div className="col-sm-9">
-                            <select className="form-control" ref="province" name="province" onChange={this._onSelectedProvince}>
-                                <option value="0">-- select --</option>
-                                {renderProvinces}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="city">City</label>
-                        <div className="col-sm-9">
-                            <select className="form-control" id="city" name="city" ref="city">
-                                <option value="0">-- select --</option>
-                                {renderCities}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="address">Address</label>
-                        <div className="col-sm-9">
-                            <input className="form-control" type="text" id="address" name="address" placeholder="Address" ref="address" />
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="phoneNo">Phone number</label>
-                        <div className="col-sm-9">
-                            <input className="form-control" type="text" id="phoneNo" name="phoneNo" placeholder="Phone number" ref="phoneNo" />
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="companyWebsite">Company website</label>
-                        <div className="col-sm-9">
-                            <input className="form-control" type="text" id="companyEmail" name="companyWebsite" placeholder="Company website" ref="companyWebsite" />
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="tin">TIN</label>
-                        <div className="col-sm-9">
-                            <input type="text" className="form-control" id="tin" name="tin" placeholder="12 digit TIN" ref="tin" />
-                        </div>
-                    </div>
                     <hr />
                     <h5>Administrator</h5> <hr />
                     <div className="form-group registerSubGroup">
@@ -229,9 +99,9 @@ let Registration = {
                     </div>
                     
                     <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="userEmail">Email</label>
+                        <label className="col-sm-3 control-label" htmlFor="email">Email</label>
                         <div className="col-sm-9">
-                            <input type="email" className="form-control" id="userEmail" name="userEmail" placeholder="User email" ref="userEmail" />
+                            <input type="email" className="form-control" id="email" name="email" placeholder="User email" ref="email" />
                         </div>
                     </div>
 
@@ -253,11 +123,19 @@ let Registration = {
                         </div>
                     </div>
                     <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="confirmPassword">Confirm Password</label>
+                        <label className="col-sm-3 control-label" htmlFor="password_confirmation">Confirm Password</label>
                         <div className="col-sm-9">
-                            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" ref="confirmPassword" />
+                            <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ref="password_confirmation" />
                         </div>
-                    </div><hr />
+                    </div>
+
+                    <div className="form-group registerSubGroup">
+                        <label className="col-sm-3 control-label" htmlFor="mobileNo">Phone number</label>
+                        <div className="col-sm-9">
+                            <input className="form-control" type="text" id="mobileNo" name="mobileNo" placeholder="Phone number" ref="mobileNo" />
+                        </div>
+                    </div>
+                    <hr />
 
                     <h5>Captcha</h5>
                     <div className="form-group registerSubGroup">

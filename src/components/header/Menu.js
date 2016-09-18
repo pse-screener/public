@@ -65,7 +65,7 @@ export default React.createClass({
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <Link to="/" className="navbar-brand"><img src="public/images/spa_logo.png" alt="Go to Home page" /></Link>
+                            <Link to="/" className="navbar-brand">PSE Monitor</Link>
                         </div>
 
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
