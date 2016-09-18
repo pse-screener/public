@@ -13,11 +13,11 @@ Apache2 config
         DocumentRoot /var/www/pmorcilladev/pse_screener/api/public
 
         # this is where our front-end is
-        Alias "/public" "/var/www/pmorcilladev/pse_screener/public/"
+        Alias "/public" "/var/www/pmorcilladev/pse_screener/public"
         # this is where the admin pagess are
-        # Alias "/admin" "/var/www/pmorcilladev/yourebusiness/admin/app"
+        Alias "/admin" "/var/www/pmorcilladev/pse_screener/admin/app"
 
-        <Directory "/var/www/pmorcilladev/pse_screener">
+        <Directory "/var/www/pmorcilladev/pse_screener/api/public">
                Options Indexes FollowSymLinks MultiViews
                AllowOverride All
         </Directory>

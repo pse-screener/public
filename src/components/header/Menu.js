@@ -75,12 +75,6 @@ export default React.createClass({
                                 <li id="customers" className={this.state.customersCSS} onClick={this._onClick.bind(null, "customers")}><Link to="customers">Customers</Link></li>
                                 <li id="about" className={this.state.aboutCSS} onClick={this._onClick.bind(null, "about")}><Link to="about">About</Link></li>
                             </ul>
-                            <form className="navbar-form navbar-left" role="search">
-                                <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Search" />
-                                </div>
-                                <button type="submit" className="btn btn-default">Submit</button>
-                            </form>
                             <ul className="nav navbar-nav navbar-right">
                                 <li id="login" className={this.state.loginCSS} onClick={this._onClick.bind(null, "login")}><a href="#myModal" role="button" data-toggle="modal"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                                 <li id="registration" className={this.state.registrationCSS} onClick={this._onClick.bind(null, "registration")}><Link to="registration"><span className="glyphicon glyphicon-registration-mark"></span> Register</Link></li>
