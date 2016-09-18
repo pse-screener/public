@@ -31,6 +31,7 @@ export default {
 		});
 	},
 	loginToAdmin: function(accessToken) {
-		window.location = publicVar.getUnsecuredEndpointWithoutIndex().concat('/admin/#/app/', accessToken);
+		window.sessionStorage.setItem("access_token", accessToken);
+		window.location = publicVar.getUnsecuredEndpointWithoutIndex().concat('/admin/#/app/');
 	}
 };
