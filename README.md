@@ -1,3 +1,5 @@
 # pse-screener.com
 
-$ gulp; npm start
+Installation instructions.
+1. $ npm install
+2. $ gulp
