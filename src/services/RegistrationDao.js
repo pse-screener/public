@@ -9,6 +9,9 @@ export default {
 	            type: "POST",
 	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/register'),
 	            data: data,
+	            /*beforeSend: function (request) {
+	                request.setRequestHeader("Accept", "application/json");
+	            },*/
 	            success: function(data) {
 	                resolve(data);
 	            },

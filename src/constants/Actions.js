@@ -13,5 +13,8 @@ export default keyMirror({
 
 	// forgot password
 	FORGOT_PASSWORD_ERROR: null,
-	FORGOT_PASSWORD_RESET_DONE: null
+	FORGOT_PASSWORD_RESET_DONE: null,
+
+	// Generic error message
+	ERROR_NO: null,
 });

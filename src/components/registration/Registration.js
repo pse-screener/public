@@ -4,8 +4,13 @@ import RegistrationStore from '../../stores/RegistrationStore';
 import Alert from '../Alert';
 import $ from 'jquery';
 import Recaptcha from 'react-recaptcha';
+import { HashLocation } from 'react-router';
 
 const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
+
+function getErrorObject() {
+    return RegistrationStore.getErrorObject();
+}
 
 let Registration = {
     getInitialState: function() {
@@ -13,6 +18,28 @@ let Registration = {
             displayAlert: false,
             errorMessage: ""
         };
+    },
+    componentDidMount: function() {
+        RegistrationStore.addChangeListener(this._onRegistrationRequest);
+    },
+    componentWillUnmount: function() {
+        RegistrationStore.removeChangeListener(this._onRegistrationRequest);
+    },
+    _onRegistrationRequest: function() {
+        let errorObject = getErrorObject();
+
+        console.log("data is: ", errorObject);
+
+        HashLocation.push('/successregistration');
+
+        /*if (errorObject.code == 0) {
+            HashLocation.push('/successregistration');
+        } else if (isNaN(errorObject.code)) {
+            console.log("Undefined error found.");
+            console.log("Invalid data: ", errorObject);
+        } else {
+            this.setState({displayAlert: true, errorMessage: errorObject.message});
+        }*/
     },
     _onSubmit: function(e) {
         e.preventDefault();
@@ -29,38 +56,29 @@ let Registration = {
         password = this.refs.password.value.trim(),
         password_confirmation = this.refs.password_confirmation.value.trim();
 
-        if (gender === 0) {
-            this.state.errorMessage = "Please choose your gender.";
-            this.state.displayAlert = true;
-        }
-        if (mobileNo.length < 7) {
-            this.state.errorMessage = "Invalid mobile number.";
-            this.state.displayAlert = true;
-        }
-        if (fName.length < 2) {
-            this.state.errorMessage = "Invalid first name.";
-            this.state.displayAlert = true;
-        }
-        if (lName.length < 2) {
-            this.state.errorMessage = "Invalid last name.";
-            this.state.displayAlert = true;
-        }
-        if (email.length < 6) {
-            this.state.errorMessage = "Invalid Email.";
-            this.state.displayAlert = true;
-        }
-        if (password.length < 6) {
-            this.state.errorMessage = "Password should be at least 6 alphanumeric characters.";
-            this.state.displayAlert = true;
-        }
-        if (password_confirmation.length < 6) {
-            this.state.errorMessage = "Password should be at least 6 alphanumeric characters.";
-            this.state.displayAlert = true;
-        }
-        if (password !== password_confirmation) {
-            this.state.errorMessage = "Password and confirm password are not the same.";
-            this.state.displayAlert = true;
-        }
+        if (gender == 0)
+            this.setState({errorMessage: "Please choose your gender.", displayAlert: true});
+
+        if (mobileNo.length < 7)
+            this.setState({errorMessage: "Invalid mobile number.", displayAlert: true});
+
+        if (fName.length < 2)
+            this.setState({errorMessage: "Invalid first name.", displayAlert: true});
+
+        if (lName.length < 2)
+            this.setState({errorMessage: "Invalid last name.", displayAlert: true});
+
+        if (email.length < 6)
+            this.setState({errorMessage: "Invalid e-mail.", displayAlert: true});
+        
+        if (password.length < 6)
+            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
+        
+        if (password_confirmation.length < 6)
+            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
+        
+        if (password !== password_confirmation)
+            this.setState({errorMessage: "Password and confirm password are not the same.", displayAlert: true});
 
         formComponent.find('[name]').each(function(index, component) {
             data[component.name] = component.value;
@@ -130,9 +148,9 @@ let Registration = {
                     </div>
 
                     <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="mobileNo">Phone number</label>
+                        <label className="col-sm-3 control-label" htmlFor="mobileNo">Mobile number</label>
                         <div className="col-sm-9">
-                            <input className="form-control" type="text" id="mobileNo" name="mobileNo" placeholder="Phone number" ref="mobileNo" />
+                            <input className="form-control" type="text" id="mobileNo" name="mobileNo" placeholder="09178888888" maxLength="11" minLength="11" ref="mobileNo" />
                         </div>
                     </div>
                     <hr />
