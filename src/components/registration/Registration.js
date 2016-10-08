@@ -8,10 +8,6 @@ import { HashLocation } from 'react-router';
 
 const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
 
-function getErrorObject() {
-    return RegistrationStore.getErrorObject();
-}
-
 let Registration = {
     getInitialState: function() {
         return {
@@ -26,20 +22,24 @@ let Registration = {
         RegistrationStore.removeChangeListener(this._onRegistrationRequest);
     },
     _onRegistrationRequest: function() {
-        let errorObject = getErrorObject();
+        let errorObject = RegistrationStore.getErrorObject();
+        let successObject = RegistrationStore.getSuccessObject();
 
-        console.log("data is: ", errorObject);
+        var errorAsText = "";
+        if (errorObject) {
+            for (var key in errorObject.jqXHR.responseJSON) {
+                errorAsText = errorAsText.concat(errorObject.jqXHR.responseJSON[key][0]);
+            }
 
-        HashLocation.push('/successregistration');
-
-        /*if (errorObject.code == 0) {
-            HashLocation.push('/successregistration');
-        } else if (isNaN(errorObject.code)) {
-            console.log("Undefined error found.");
-            console.log("Invalid data: ", errorObject);
-        } else {
-            this.setState({displayAlert: true, errorMessage: errorObject.message});
-        }*/
+            this.setState({displayAlert: true, errorMessage: errorAsText});
+        } else if (successObject) {
+            if (successObject.code == 0) {
+                HashLocation.push('/successregistration');
+            } else {
+                errorAsText = successObject.message;
+                this.setState({displayAlert: true, errorMessage: errorAsText});
+            }
+        }
     },
     _onSubmit: function(e) {
         e.preventDefault();

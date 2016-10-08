@@ -9,9 +9,9 @@ export default {
 	            type: "POST",
 	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/register'),
 	            data: data,
-	            /*beforeSend: function (request) {
-	                request.setRequestHeader("Accept", "application/json");
-	            },*/
+	            beforeSend: function (xhr) {
+	                xhr.setRequestHeader("Accept", "application/json");
+	            },
 	            success: function(data) {
 	                resolve(data);
 	            },
@@ -26,7 +26,7 @@ export default {
 		promise.then(function(data) {
 			RegistrationActionCreator.onSubmitDone(data);
 		}, function(reason) {
-			console.log('Error registering: ', reason);
+			RegistrationActionCreator.onSubmitDoneButError(reason);
 		});
 	}
 };

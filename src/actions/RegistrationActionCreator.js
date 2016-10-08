@@ -24,9 +24,15 @@ export default {
         // } else {
             // alert(data.message);
             Dispatcher.dispatch({
-                actionType: Actions.ERROR_NO,
+                actionType: Actions.SUCCESS_REGISTRATION,
                 data
             });
         // }
-	}
+	},
+    onSubmitDoneButError: function(xhr) {
+        Dispatcher.dispatch({
+            actionType: Actions.ERROR_NO,
+            xhr
+        });
+    }
 };

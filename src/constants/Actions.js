@@ -17,4 +17,6 @@ export default keyMirror({
 
 	// Generic error message
 	ERROR_NO: null,
+
+	SUCCESS_REGISTRATION: null,
 });
