@@ -25,6 +25,8 @@ let Registration = {
         let errorObject = RegistrationStore.getErrorObject();
         let successObject = RegistrationStore.getSuccessObject();
 
+        console.log("Success is ", successObject);
+
         var errorAsText = "";
         if (errorObject) {
             for (var key in errorObject.jqXHR.responseJSON) {
@@ -56,29 +58,38 @@ let Registration = {
         password = this.refs.password.value.trim(),
         password_confirmation = this.refs.password_confirmation.value.trim();
 
-        if (gender == 0)
+        if (gender == 0) {
             this.setState({errorMessage: "Please choose your gender.", displayAlert: true});
-
-        if (mobileNo.length < 7)
+            return;
+        }
+        if (mobileNo.length < 7) {
             this.setState({errorMessage: "Invalid mobile number.", displayAlert: true});
-
-        if (fName.length < 2)
+            return;
+        }
+        if (fName.length < 2) {
             this.setState({errorMessage: "Invalid first name.", displayAlert: true});
-
-        if (lName.length < 2)
+            return;
+        }
+        if (lName.length < 2) {
             this.setState({errorMessage: "Invalid last name.", displayAlert: true});
-
-        if (email.length < 6)
+            return;
+        }
+        if (email.length < 6) {
             this.setState({errorMessage: "Invalid e-mail.", displayAlert: true});
-        
-        if (password.length < 6)
+            return;
+        }        
+        if (password.length < 6) {
             this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
-        
-        if (password_confirmation.length < 6)
+            return;
+        }        
+        if (password_confirmation.length < 6) {
             this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
-        
-        if (password !== password_confirmation)
+            return;
+        }        
+        if (password !== password_confirmation) {
             this.setState({errorMessage: "Password and confirm password are not the same.", displayAlert: true});
+            return;
+        }
 
         formComponent.find('[name]').each(function(index, component) {
             data[component.name] = component.value;
