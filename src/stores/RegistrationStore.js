@@ -12,7 +12,13 @@ let RegistrationStore = assign(BaseStore(), {
     },
     getSuccessObject: function() {
         return successObject;
-    }
+    },
+    setErrorObject: function() {
+        errorObject = null;
+    },
+    setSuccessObject: function() {
+        successObject = null;
+    },
 });
 
 RegistrationStore.dispatchToken = Dispatcher.register(function(payload) {

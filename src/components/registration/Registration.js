@@ -25,6 +25,9 @@ let Registration = {
         let errorObject = RegistrationStore.getErrorObject();
         let successObject = RegistrationStore.getSuccessObject();
 
+        console.log("successObject is ", successObject);
+        console.log("errorObject is ", errorObject);
+
         var errorAsText = "";
         if (errorObject) {
             for (var key in errorObject.jqXHR.responseJSON) {
@@ -45,6 +48,8 @@ let Registration = {
         e.preventDefault();
         this.state.displayAlert = false;
         this.state.errorMessage = "";
+        RegistrationStore.setErrorObject();
+        RegistrationStore.setSuccessObject();
 
         let formComponent = $('#form'), data = {};
 
