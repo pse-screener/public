@@ -25,9 +25,6 @@ let Registration = {
         let errorObject = RegistrationStore.getErrorObject();
         let successObject = RegistrationStore.getSuccessObject();
 
-        console.log("successObject is ", successObject);
-        console.log("errorObject is ", errorObject);
-
         var errorAsText = "";
         if (errorObject) {
             for (var key in errorObject.jqXHR.responseJSON) {
