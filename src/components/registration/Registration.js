@@ -8,9 +8,7 @@ import { HashLocation } from 'react-router';
 
 const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
 
-var reCaptchaCallback = function() {
-    console.log("Done!!!");
-}
+var reCaptchaCallback = function() {};
 
 let Registration = {
     getInitialState: function() {
@@ -175,11 +173,7 @@ let Registration = {
                     <div className="form-group registerSubGroup">
                         <p>Refresh the page if no captcha image is shown below.</p>
                         <div className="col-md-4">
-                            <Recaptcha
-                                sitekey={sitekey}
-                                render="explicit"
-                                onloadCallback={reCaptchaCallback}
-                            />
+                            <Recaptcha sitekey={sitekey} render="explicit" onloadCallback={reCaptchaCallback} />
                         </div>
                     </div>
 
