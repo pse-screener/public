@@ -8,6 +8,10 @@ import { HashLocation } from 'react-router';
 
 const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
 
+var reCaptchaCallback = function() {
+    console.log("Done!!!");
+}
+
 let Registration = {
     getInitialState: function() {
         return {
@@ -155,6 +159,7 @@ let Registration = {
                         <label className="col-sm-3 control-label" htmlFor="password_confirmation">Confirm Password</label>
                         <div className="col-sm-9">
                             <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ref="password_confirmation" />
+                            <span id="helpBlock" className="help-block">We recomment not to use your broker password here.</span>
                         </div>
                     </div>
 
@@ -170,7 +175,11 @@ let Registration = {
                     <div className="form-group registerSubGroup">
                         <p>Refresh the page if no captcha image is shown below.</p>
                         <div className="col-md-4">
-                            <Recaptcha sitekey={sitekey} />
+                            <Recaptcha
+                                sitekey={sitekey}
+                                render="explicit"
+                                onloadCallback={reCaptchaCallback}
+                            />
                         </div>
                     </div>
 
