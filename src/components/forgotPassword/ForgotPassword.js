@@ -61,15 +61,13 @@ export default React.createClass({
 
 		return (<div className="container">
 					<div className="row">
-						<div className="col-sm-5 col-md-3 col-lg-4">
+						<div className="col-md-12">
 							<h4 className="page_title">Forgot Password</h4>
 							{renderAlert}
                         	<p>Enter your email address.</p>
-                        	<div className="col-sm-7 col-md-8 col-lg-9"><input ref="email" type="email" className="form-control" placeholder="Enter email address" />{renderLoader}</div>
-                        	<div className="col-sm-5 col-md-4 col-lg-3"><button type="button" className="btn btn-primary" onClick={this._onClick}>Send</button></div>
+                        	<div className="col-xs-6 col-sm-6 col-md-4 col-lg-5"><input ref="email" type="email" className="form-control" placeholder="Enter email address" />{renderLoader}</div>
+                        	<div className="col-xs-6 col-sm-2 col-md-3 col-lg-2"><button type="button" className="btn btn-primary" onClick={this._onClick}>Send</button></div>
 						</div>
-						<div className="col-sm-4 col-md-5 col-lg-4"></div>
-						<div className="col-sm-3 col-md-4 col-lg-4"></div>
 					</div>
 				</div>);
 	}
