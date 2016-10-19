@@ -4,6 +4,7 @@ import Alert from '../Alert';
 import { Link } from 'react-router';
 import LoginActionCreator from '../../actions/LoginActionCreator';
 import LoginStore from '../../stores/LoginStore';
+import $ from 'jquery';
 
 function getAccessToken() {
     return LoginStore.getAccessToken();
@@ -27,8 +28,11 @@ module.exports = React.createClass({
 
         if (accessToken.access_token)
             LoginActionCreator.loginToAdmin(accessToken.access_token);
-        else
+        else { // it doesn't run here at the moment, I'll fix this soon.
+        	$('#closeBtn').click();
+			window.location = publicVar.gotoUnsecuredLogin();
             console.log("Invalid authentication.");
+        }
     },
     _onLoginSubmit: function(e) {
         e.preventDefault();
@@ -43,7 +47,7 @@ module.exports = React.createClass({
             this.state.errorMessage = "Invalid Email.";
             this.state.displayAlert = true;
         }
-        if (password.length < 4) {
+        if (password.length < 6) {
             this.state.errorMessage = "Password should be at least 6 characters.";
             this.state.displayAlert = true;
         }
@@ -97,7 +101,7 @@ module.exports = React.createClass({
 		                        <div className="form-group">
 		                            <div className="col-sm-offset-2 col-sm-10">
 		                                <button type="submit" className="btn btn-primary" onClick={this._onLoginSubmit}>Log-in</button>
-		                                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+		                                <button name="closeBtn" type="button" className="btn btn-default" data-dismiss="modal">Close</button>
 		                            </div>
 		                        </div>
 		                    </form>

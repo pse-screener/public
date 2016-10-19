@@ -5,7 +5,7 @@ import { RouteHandler } from 'react-router';
 import LoginModal from './header/LoginModal';
 import Menu from './header/Menu';
 import Footer from './footer/Footer';
-import jquery from 'jquery';
+// import jquery from 'jquery';
 
 var Home = {
     render: function() {

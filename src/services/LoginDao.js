@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import publicVar from '../constants/publicVar';
 import LoginActionCreator from '../actions/LoginActionCreator';
 
@@ -26,7 +25,7 @@ export default {
 		promise.then(function(data) {
 			LoginActionCreator.onLoginSubmitDone(data);
 		}, function(reason) {
-			console.log('Error logging-in: ', reason);
+			console.log('Error logging-in: ', reason.errorThrown);
 			window.location = publicVar.gotoUnsecuredLogin();
 		});
 	},

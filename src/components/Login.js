@@ -59,9 +59,9 @@ let Login = React.createClass({
     render: function() {
         return (<div className="container">
             <div className="row">
-                <div className="col-md-4">
+                <div className="col-xs-2 col-sm-3 col-md-4">
                 </div>
-                <div className="col-md-4">
+                <div className="col-xs-8 col-sm-6 col-md-4">
                     <div className="panel panel-default login">
                         <div className="panel-heading">
                             <h3 className="panel-title">Login</h3>
@@ -82,7 +82,7 @@ let Login = React.createClass({
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-sm-2 col-sm-3 col-md-4">
                     <Alert message={this.state.errorMessage} alertType="danger" />
                 </div>
             </div>

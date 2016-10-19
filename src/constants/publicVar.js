@@ -1,16 +1,16 @@
 const endpoint = {
 	securedScheme: 'https://',
 	unSecuredScheme: 'http://',
-	domain: 'www.pse-screener.com',
-	domainWithIndex: 'www.pse-screener.com/index.php',
+	domain: '10.52.7.90',
+	domainWithIndex: '10.52.7.90/index.php',
 
-	restTokenUrl: 'www.pse-screener.com',
+	restTokenUrl: '10.52.7.90',
 	restTokenUrlPath: '/oauth/token',
 	client_id: '1',
 	client_secret: 'GgAUZzLYJ5nrdY9Q1R4SGnbvFSlbJk5HzdMEiXBb',
 
 	// adminDomainAndPath: 'http://127.0.0.1:8000/#/app',
-	adminDomainAndPath: 'http://www.pse-screener.com/admin',
+	adminDomainAndPath: 'http://10.52.7.90/admin',
 
 	getUnsecuredEndpointWithIndex: function() {
 		return this.unSecuredScheme.concat(this.domain);
