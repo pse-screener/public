@@ -10,7 +10,7 @@ export default {
 		ForgotPasswordDao.onSubmit(data);
 	},
 	onSubmitDone: function(data) {
-		if (parseInt(data.statusCode) == 0) {
+		if (parseInt(data.code) == 0) {
         	HashLocation.push('/forgotpasswordemailsent');
         } else {
         	Dispatcher.dispatch({

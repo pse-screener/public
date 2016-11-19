@@ -6,8 +6,8 @@ export default {
 	onSubmit: function(data) {
 		let promise = new Promise(function(resolve, reject) {
 			$.ajax({
-	            type: "get",
-	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/api/forgotPassword'),
+	            type: "POST",
+	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/password/email'),
 	            data: data,
 	            success: function(data) {
 	                resolve(data);
@@ -26,7 +26,7 @@ export default {
 			console.log('Error forgot password: ', reason);
 		});
 	},
-	forgotPasswordReset: function(hash) {
+	forgotPasswordReset: function(data) {
 		let promise = new Promise(function(resolve, reject) {
 			/*var oReq = new XMLHttpRequest();
 			//oReq.addEventListener("load", reqListener);
@@ -34,11 +34,11 @@ export default {
 			oReq.send();
 
 			return; */
-			let url = publicVar.getUnsecuredEndpointWithIndex().concat('/api/forgotPasswordReset')
-					.concat('?hash=').concat(hash);
+			let url = publicVar.getUnsecuredEndpointWithIndex().concat('/password/reset')
 			$.ajax({
-	            type: "PUT",
+	            type: "POST",
 	            url: url,
+	            data: data,
 	            success: function(data) {
 	                resolve(data);
 	            },
