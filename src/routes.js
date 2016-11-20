@@ -28,6 +28,6 @@ export default (
     <Route name="forgotpassword" path="/forgotpassword" handler={ForgotPassword} />
     <Route name="forgotpasswordemailsent" path="/forgotpasswordemailsent" handler={ForgotPasswordEmailSent} />
     // link sent throught email; http://localhost:8080/#/forgotPasswordReset?hash=0PBKERM59SzVOmT63viDHxwWrqeytua2j8UnZXCF
-    <Route name="forgotPasswordReset" path="/forgotPasswordReset" handler={ForgotPasswordReset} />
+    <Route name="forgotPasswordReset" path="/forgotPasswordReset/:hash" handler={ForgotPasswordReset} />
   </Route>
 );
