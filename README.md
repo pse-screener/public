@@ -41,3 +41,10 @@ Running npm install and gulp must be ran in the server not your local.
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+=======
+1. $ npm install
+2. $ npm install -g gulp --save-dev
+
+## Run task in public folder.
+
+1. $ gulp

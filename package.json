@@ -39,6 +39,7 @@
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.1",
     "eslint-plugin-react": "^3.16.1",
+    "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "react-imageloader": "^2.1.0",
     "underscore": "^1.8.3",

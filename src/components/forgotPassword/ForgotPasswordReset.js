@@ -48,9 +48,9 @@ export default React.createClass({
 		// this.forceUpdate();
 
 		let data = {
-			hash : this.refs.hash.value.trim();
-			email : this.refs.email.value.trim();
-			password : this.refs.password.value.trim();
+			hash : this.refs.hash.value.trim(),
+			email : this.refs.email.value.trim(),
+			password : this.refs.password.value.trim(),
 			password_confirmation : this.refs.password_confirmation.value.trim()
 		}
 
