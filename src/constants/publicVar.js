@@ -1,7 +1,8 @@
 const endpoint = {
 	securedScheme: 'https://',
 	unSecuredScheme: 'http://',
-	domain: '192.168.254.5',
+	// domain: '170.168.21.54',
+	domain: 'www.pse-screener.com',
 	restTokenUrlPath: '/oauth/token',
 	client_id: '1',
 	client_secret: 'GgAUZzLYJ5nrdY9Q1R4SGnbvFSlbJk5HzdMEiXBb',
