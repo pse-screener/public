@@ -19,7 +19,7 @@ Running npm install and gulp must be ran in the server not your local.
 
         # this is where our front-end is
         Alias "/public" "/var/www/pmorcilladev/pse_screener/public"
-        # this is where the admin pagess are
+        # this is where the admin pages are
         Alias "/admin" "/var/www/pmorcilladev/pse_screener/admin/app"
 
         <Directory "/var/www/pmorcilladev/pse_screener/api/public">
@@ -47,4 +47,10 @@ Running npm install and gulp must be ran in the server not your local.
 
 ## Run task in public folder.
 
-1. $ gulp
+$ gulp
+
+
+### Common Issues
+
+1. Note that you have to use the domain name not the IP address to access the page so that the reCaptcha will work. So update your hosts file in your windows OS. The name must also be same with <project_name>/admin/.../appConstantsFactory.js.
+2. sudo ln -s /usr/bin/nodejs /usr/bin/node - issue with node and nodejs.
