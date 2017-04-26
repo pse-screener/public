@@ -24,7 +24,7 @@ var Home = {
                         <div className="page-header">
                             <h4>PSE Monitoring Alert System</h4>
                         </div>
-                        <p>A solution to a problem in monitoring PSE.</p>
+                        <p>Sends an SMS to a Philippine registered mobile number to alert user based on their criteria.</p>
                     </div>
                 </div>);
     }
