@@ -14,6 +14,12 @@ export default {
 			data
 		});
 	},
+	onLoginSubmitDoneWithError: function(reason) {
+		Dispatcher.dispatch({
+			actionType: Actions.LOGIN_ERROR,
+			reason
+		});
+	},
 	loginToAdmin: function(accessToken) {
 		LoginDao.loginToAdmin(accessToken);
 	}

@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import LoginActionCreator from '../../actions/LoginActionCreator';
 import LoginStore from '../../stores/LoginStore';
 import $ from 'jquery';
+import publicVar from '../../constants/publicVar';
 
 function getAccessToken() {
     return LoginStore.getAccessToken();
@@ -25,13 +26,13 @@ module.exports = React.createClass({
     },
     _onLoginRequest: function() {
         let accessToken = getAccessToken();
+        let errorObject = LoginStore.getErrorReason();
 
-        if (accessToken.access_token)
-            LoginActionCreator.loginToAdmin(accessToken.access_token);
-        else { // it doesn't run here at the moment, I'll fix this soon.
+        if (errorObject) {
         	$('#closeBtn').click();
 			window.location = publicVar.gotoUnsecuredLogin();
-            console.log("Invalid authentication.");
+        } else {
+        	LoginActionCreator.loginToAdmin(accessToken.access_token);
         }
     },
     _onLoginSubmit: function(e) {
@@ -60,6 +61,9 @@ module.exports = React.createClass({
             this.forceUpdate();
         else
             LoginActionCreator.onLoginSubmit(data);
+    },
+    _onForgotPasswordClicked: function() {
+    	$('#closeBtn').click();
     },
 	render: function() {
 		return (<div className="modal fade" id="myModal">
@@ -95,13 +99,13 @@ module.exports = React.createClass({
 		                                </div>
 		                            </div>
 		                            <div className="col-sm-offset-2 col-sm-4">
-		                                <Link to="forgotpassword">Forgot password</Link>
+		                                <Link to="forgotpassword" onClick={this._onForgotPasswordClicked}>Forgot password</Link>
 		                            </div>
 		                        </div>
 		                        <div className="form-group">
 		                            <div className="col-sm-offset-2 col-sm-10">
 		                                <button type="submit" className="btn btn-primary" onClick={this._onLoginSubmit}>Log-in</button>
-		                                <button name="closeBtn" type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+		                                <button id="closeBtn" name="closeBtn" type="button" className="btn btn-default" data-dismiss="modal">Close</button>
 		                            </div>
 		                        </div>
 		                    </form>

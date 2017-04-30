@@ -26,7 +26,8 @@ export default {
 			LoginActionCreator.onLoginSubmitDone(data);
 		}, function(reason) {
 			console.log('Error logging-in: ', reason.errorThrown);
-			window.location = publicVar.gotoUnsecuredLogin();
+			// window.location = publicVar.gotoUnsecuredLogin();
+			LoginActionCreator.onLoginSubmitDoneWithError(reason);
 		});
 	},
 	loginToAdmin: function(accessToken) {
