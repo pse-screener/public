@@ -11,6 +11,7 @@ import SuccessRegistration from './components/registration/SuccessRegistration';
 import ForgotPassword from './components/forgotPassword/ForgotPassword';
 import ForgotPasswordEmailSent from './components/forgotPassword/ForgotPasswordEmailSent';
 import ForgotPasswordReset from './components/forgotPassword/ForgotPasswordReset';
+import Donate from './components/Donate';
 
 export default (  
   <Route name="app" path="/" handler={Home}>
@@ -29,5 +30,7 @@ export default (
     <Route name="forgotpasswordemailsent" path="/forgotpasswordemailsent" handler={ForgotPasswordEmailSent} />
     // link sent throught email; http://localhost:8080/#/forgotPasswordReset?hash=0PBKERM59SzVOmT63viDHxwWrqeytua2j8UnZXCF
     <Route name="forgotPasswordReset" path="/forgotPasswordReset/:hash" handler={ForgotPasswordReset} />
+
+    <Route name="donate" path="/donate" handler={Donate} />
   </Route>
 );

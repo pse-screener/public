@@ -15,6 +15,8 @@ export default React.createClass({
 	},
 	render: function() {
 		return (<div className="container">
+					<h4 className="page_title">Services</h4>
+		            <hr />
 					Sends SMS message to users based on their criteria on PSE stock prices.
 				</div>
 		);
