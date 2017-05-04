@@ -48,14 +48,16 @@ export default React.createClass({
         if (this.state.displayAlert) {
         	this.state.displayLoader = false;
         	this.forceUpdate();
-        }
-        else
+        } else {
         	ForgotPasswordActionCreator.onSubmit(email);
+        }
 	},
 	render: function() {
+		console.log("Status: ", this.state.status);
+
 		let renderAlert = null, renderLoader = null;
 		if (this.state.displayAlert)
-			renderAlert = (<Alert message={this.state.status.statusDesc} alertType="danger" />);
+			renderAlert = (<Alert message="Sample error here..." alertType="danger" />);
 		if (this.state.displayLoader)
 			renderLoader = (<img style={{WebkitUserSelect: "none"}} src="public/images/ajax-loader-small.gif" />);
 
