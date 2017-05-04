@@ -23,9 +23,19 @@ export default {
 		ForgotPasswordDao.forgotPasswordReset(hash);
 	},
 	forgotPasswordResetDone: function(data) {
+		if (parseInt(data.code) == 0) {
+			HashLocation.push('/passwordResetSuccess');
+		} else {
+			Dispatcher.dispatch({
+				actionType: Actions.FORGOT_PASSWORD_RESET_DONE_ERROR,
+				data
+			});
+		}
+	},
+	forgotPasswordResetDoneWithError: function(errorObj) {
 		Dispatcher.dispatch({
-			actionType: Actions.FORGOT_PASSWORD_RESET_DONE,
-			data
+			actionType: Actions.FORGOT_PASSWORD_RESET_DONE_ERROR,
+			errorObj
 		});
 	}
 }

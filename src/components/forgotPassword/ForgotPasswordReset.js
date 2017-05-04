@@ -48,13 +48,13 @@ export default React.createClass({
 		// this.forceUpdate();
 
 		let data = {
-			hash : this.refs.hash.value.trim(),
+			token : this.refs.token.value.trim(),
 			email : this.refs.email.value.trim(),
 			password : this.refs.password.value.trim(),
-			password_confirmation : this.refs.password_confirmation.value.trim()
+			password_confirmation : this.refs.password_confirm.value.trim()
 		}
 
-		ForgotPasswordActionCreator.forgotPasswordReset(hash);
+		ForgotPasswordActionCreator.forgotPasswordReset(data);
 	},
 	render: function() {
 		let renderLoader = null;

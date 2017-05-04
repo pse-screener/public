@@ -52,8 +52,9 @@ export default {
 
 		promise.then(function(data) {
 			ForgotPasswordActionCreator.forgotPasswordResetDone(data);
-		}, function(reason) {
-			console.log('Error forgot password reset: ', reason);
+		}, function(errorObj) {
+			console.log('Error forgot password reset: ', errorObj);
+			ForgotPasswordActionCreator.forgotPasswordResetDoneWithError(errorObj);
 		});
 	}
 };
