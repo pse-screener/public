@@ -53,8 +53,6 @@ export default React.createClass({
         }
 	},
 	render: function() {
-		console.log("Status: ", this.state.status);
-
 		let renderAlert = null, renderLoader = null;
 		if (this.state.displayAlert)
 			renderAlert = (<Alert message={this.state.status.errorThrown} alertType="danger" />);
