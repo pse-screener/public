@@ -30,7 +30,7 @@ module.exports = React.createClass({
 
         if (errorObject) {
         	$('#closeBtn').click();
-			window.location = publicVar.gotoUnsecuredLogin();
+			window.location = publicVar.gotoLoginPage();
         } else {
         	LoginActionCreator.loginToAdmin(accessToken.access_token);
         }

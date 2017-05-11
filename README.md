@@ -4,10 +4,7 @@
 
 1. $ npm install
 2. $ gulp
-
-### Notes
-
-Running npm install and gulp must be ran in the server not your local.
+3. export NODE_ENV=development
 
 ### Apache config
 

@@ -1,5 +1,12 @@
 var webpack = require('webpack');
 
+var API_URL = {
+    production: JSON.stringify('http://170.168.21.55'),
+    development: JSON.stringify('http://170.168.21.55')
+}
+
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
 module.exports = {
     //watch: true,
     module: {
@@ -22,8 +29,11 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-           $: "jquery",
-           jQuery: "jquery"
-       })
+            $: "jquery",
+            jQuery: "jquery"
+        }),
+        new webpack.DefinePlugin({
+            'API_URL': API_URL[environment]
+        })
     ]
 }

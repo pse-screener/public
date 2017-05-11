@@ -1,26 +1,16 @@
 const endpoint = {
-	securedScheme: 'https://',
-	unSecuredScheme: 'http://',
-	// domain: '170.168.21.54',
-	domain: 'www.pse-screener.com',
 	restTokenUrlPath: '/oauth/token',
 	client_id: '1',
 	client_secret: 'GgAUZzLYJ5nrdY9Q1R4SGnbvFSlbJk5HzdMEiXBb',
 
-	getUnsecuredEndpointWithIndex: function() {
-		return this.unSecuredScheme.concat(this.domain);
+	getEndpoint: function() {
+		return API_URL;
 	},
-	getUnsecuredEndpointWithoutIndex: function() {
-		return this.unSecuredScheme.concat(this.domain);
+	getRestTokenUrlPath: function() {
+		return API_URL.concat(this.restTokenUrlPath);
 	},
-	getUnsecuredRESTWithoutIndex: function() {
-		return this.unSecuredScheme.concat(this.domain, this.restTokenUrlPath);
-	},
-	getUnsecuredAdminDomainAndPath: function() {
-		return 'http://' + this.domain + '/admin';
-	},
-	gotoUnsecuredLogin: function() {
-		return this.unSecuredScheme.concat(this.domain, '/public/#/login');
+	gotoLoginPage: function() {
+		return API_URL.concat('/public/#/login');
 	}
 }
 

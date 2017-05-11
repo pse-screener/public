@@ -7,7 +7,7 @@ export default {
 		let promise = new Promise(function(resolve, reject) {
 			$.ajax({
 	            type: "POST",
-	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/register'),
+	            url: publicVar.getEndpoint().concat('/register'),
 	            data: data,
 	            beforeSend: function (xhr) {
 	                xhr.setRequestHeader("Accept", "application/json");

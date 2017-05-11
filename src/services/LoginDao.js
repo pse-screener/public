@@ -9,7 +9,7 @@ export default {
 		let promise = new Promise(function(resolve, reject) {
 			$.ajax({
 	            type: "POST",
-	            url: publicVar.getUnsecuredRESTWithoutIndex(),
+	            url: publicVar.getRestTokenUrlPath(),
 	            data: data,
 	            success: function(data) {
 	                resolve(data);
@@ -26,12 +26,11 @@ export default {
 			LoginActionCreator.onLoginSubmitDone(data);
 		}, function(reason) {
 			console.log('Error logging-in: ', reason.errorThrown);
-			// window.location = publicVar.gotoUnsecuredLogin();
 			LoginActionCreator.onLoginSubmitDoneWithError(reason);
 		});
 	},
 	loginToAdmin: function(accessToken) {
 		window.localStorage.setItem("access_token", accessToken);
-		window.location = publicVar.getUnsecuredEndpointWithoutIndex().concat('/admin/#/app/');
+		window.location = publicVar.getEndpoint().concat('/admin/#/app/');
 	}
 };

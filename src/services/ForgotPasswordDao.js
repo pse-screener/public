@@ -7,7 +7,7 @@ export default {
 		let promise = new Promise(function(resolve, reject) {
 			$.ajax({
 	            type: "POST",
-	            url: publicVar.getUnsecuredEndpointWithIndex().concat('/password/email'),
+	            url: publicVar.getEndpoint().concat('/password/email'),
 	            data: data,
 	            success: function(data) {
 	                resolve(data);
@@ -34,7 +34,7 @@ export default {
 			oReq.send();
 
 			return; */
-			let url = publicVar.getUnsecuredEndpointWithIndex().concat('/password/reset')
+			let url = publicVar.getEndpoint().concat('/password/reset')
 			$.ajax({
 	            type: "POST",
 	            url: url,
