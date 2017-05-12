@@ -1,6 +1,6 @@
-# pse-screener.com
+# pse
 
-## Installation instructions.
+### Installation instructions.
 
 1. $ npm install
 2. $ gulp
@@ -42,12 +42,12 @@
 1. $ npm install
 2. $ npm install -g gulp --save-dev
 
-## Run task in public folder.
+### Run task in public folder.
 
 $ gulp
 
 
-### Common Issues
+##### Common Issues
 
 1. Note that you have to use the domain name not the IP address to access the page so that the reCaptcha will work. So update your hosts file in your windows OS. The name must also be same with <project_name>/admin/.../appConstantsFactory.js.
 2. sudo ln -s /usr/bin/nodejs /usr/bin/node - issue with node and nodejs.
