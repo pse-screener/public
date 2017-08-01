@@ -157,7 +157,7 @@ let Registration = {
                         <label className="col-sm-3 control-label" htmlFor="password_confirmation">Confirm Password</label>
                         <div className="col-sm-9">
                             <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ref="password_confirmation" />
-                            <span id="helpBlock" className="help-block">We recomment not to use your broker password here.</span>
+                            <span id="helpBlock" className="help-block">We recommend not to use your broker password here.</span>
                         </div>
                     </div>
 

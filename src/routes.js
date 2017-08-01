@@ -12,6 +12,7 @@ import ForgotPassword from './components/forgotPassword/ForgotPassword';
 import ForgotPasswordEmailSent from './components/forgotPassword/ForgotPasswordEmailSent';
 import ForgotPasswordReset from './components/forgotPassword/ForgotPasswordReset';
 import PasswordResetSuccess from './components/forgotPassword/PasswordResetSuccess';
+import EmailConfirmation from './components/registration/EmailConfirmation';
 import Donate from './components/Donate';
 
 export default (  
@@ -29,9 +30,12 @@ export default (
     // forgot password
     <Route name="forgotpassword" path="/forgotpassword" handler={ForgotPassword} />
     <Route name="forgotpasswordemailsent" path="/forgotpasswordemailsent" handler={ForgotPasswordEmailSent} />
-    // link sent throught email; http://localhost:8080/#/forgotPasswordReset?hash=0PBKERM59SzVOmT63viDHxwWrqeytua2j8UnZXCF
+    // link sent throught email; http://localhost:8080/#/forgotPasswordReset/0PBKERM59SzVOmT63viDHxwWrqeytua2j8UnZXCF
     <Route name="forgotPasswordReset" path="/forgotPasswordReset/:hash" handler={ForgotPasswordReset} />
     <Route name="passwordResetSuccess" path="/passwordResetSuccess" handler={PasswordResetSuccess} />
+
+    // Email confirmation
+    <Route name="emailConfirmation" path="/emailConfirmation/:hash" handler={EmailConfirmation} />
 
     <Route name="donate" path="/donate" handler={Donate} />
   </Route>
