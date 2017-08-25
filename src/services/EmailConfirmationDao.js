@@ -3,13 +3,12 @@ import publicVar from '../constants/publicVar';
 import EmailConfirmationActionCreator from '../actions/EmailConfirmationActionCreator';
 
 export default {
-	emailConfirmation: function(data) {
+	emailConfirmation: function(hash) {
 		let promise = new Promise(function(resolve, reject) {
-			let url = publicVar.getEndpoint().concat('/api/v1/emailConfirmation')
+			let url = publicVar.getEndpoint().concat('/api/v1/emailConfirmation/', hash)
 			$.ajax({
 	            type: "POST",
 	            url: url,
-	            data: data,
 	            success: function(data) {
 	                resolve(data);
 	            },

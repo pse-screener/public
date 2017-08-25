@@ -9,10 +9,12 @@ var Home = {
                             <li className="active" data-slide-to="0" data-target="#myCarousel"></li>
                             <li data-slide-to="1" data-target="#myCarousel"></li>
                             <li data-slide-to="2" data-target="#myCarousel"></li>
+                            <li data-slide-to="3" data-target="#myCarousel"></li>
                         </ol>
 
                         <div className="carousel-inner">
-                            <div className="item active" id="slide1"></div>
+                            <div className="item active" id="slide0"></div>
+                            <div className="item" id="slide1"></div>
                             <div className="item" id="slide2"></div>
                             <div className="item" id="slide3"></div>
                         </div>

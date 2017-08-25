@@ -111,17 +111,17 @@ html, body {
     #myCarousel .item {
         height: 350px;
     }
-
+    #slide0 {
+        background: url("../images/slide_lg_0.jpg") top center no-repeat;
+    }
     #slide1 {
-        background: url("../images/carousel_large_01.jpg") top center no-repeat;
+        background: url('../images/slide_lg_1.jpg') top center no-repeat;
     }
-
     #slide2 {
-        background: url('../images/carousel_large_01.jpg') top center no-repeat;
+        background: url('../images/slide_lg_2.png') top center no-repeat;
     }
-
     #slide3 {
-        background: url('../images/carousel_large_01.jpg') top center no-repeat;
+        background: url('../images/slide_lg_3.jpg') top center no-repeat;
     }
 }
 

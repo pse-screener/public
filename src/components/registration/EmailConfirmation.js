@@ -1,5 +1,6 @@
 import React from 'react';
 import EmailConfirmationActionCreator from '../../actions/EmailConfirmationActionCreator';
+import { Link } from 'react-router';
 
 export default React.createClass({
 	_getHash: function() {		
@@ -14,6 +15,8 @@ export default React.createClass({
 					<div className="col-md-4">
 						<h4 className="page_title">Successful.</h4>
 		            	<p>Successfully confirmed your email address.</p>
+		            	<br />
+            			<p>Click <Link to="login"><strong>here</strong></Link> to log-in.</p>
 					</div>
 					<div className="col-md-4" />
 					<div className="col-md-4" />

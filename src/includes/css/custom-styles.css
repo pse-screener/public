@@ -1,0 +1,127 @@
+/* Custom CSS */
+
+html, body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* --------------------------------------
+   Typography
+   -------------------------------------- */
+.well .page-header {
+   margin-top: 0;
+}
+
+.well .page-header h4 {
+   margin-top: 0;
+   color: #F5841F;
+}
+
+.well h4 {
+   font-family: "Oswald", arial;
+}
+
+.page_title {
+   font-family: "Oswald", arial;
+   color: #F5841F;
+}
+
+.row .col-sm-6 h5 {
+   font-family: "Oswald", arial;
+   color: #F5841F;
+}
+
+.registerSubGroup {
+   font-size: 12px;
+}
+
+/* --------------------------------------
+   Carousel
+   -------------------------------------- */
+.carousel {
+   margin-bottom: 20px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -125px;
+}
+
+/*header*/
+.navbar-default {
+    /*background-color: #e7e7e7;*/
+}
+
+
+/* Footer */
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+    height: 121px;
+}
+
+#footer {
+    height: 125px;
+    background: #333;
+    color: #eee;
+    padding: 10px;
+}
+
+#footer h6 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#footer ul {
+    font-size: 12px;
+}
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+    #push, #footer {
+        height: 150px;
+    }
+    #wrap {
+        /* Negative indent footer by it's height */
+        margin: 0 auto -150px;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+    #push, #footer {
+        height: 150px;
+    }
+
+    #wrap {
+        /* Negative indent footer by it's height */
+        margin: 0 auto -150px;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+    #myCarousel .item {
+        height: 350px;
+    }
+    #slide0 {
+        background: url("../images/slide_lg_0.jpg") top center no-repeat;
+    }
+    #slide1 {
+        background: url('../images/slide_lg_1.jpg') top center no-repeat;
+    }
+    #slide2 {
+        background: url('../images/slide_lg_2.png') top center no-repeat;
+    }
+    #slide3 {
+        background: url('../images/slide_lg_3.jpg') top center no-repeat;
+    }
+}
+

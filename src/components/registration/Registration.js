@@ -97,10 +97,12 @@ let Registration = {
             data[component.name] = component.value;
         });
 
-        if (this.state.displayAlert)
+        if (this.state.displayAlert) {
             this.forceUpdate();
-        else
+        } else {
+            $("#submit").addClass("disabled");
             RegistrationActionCreator.onSubmit(data);        
+        }
     },
     _onCancel: function() {
         this.refs.registrationForm.getDOMNode().reset;
@@ -180,7 +182,7 @@ let Registration = {
                     <div className="form-group">
                         <hr />
                         <div className="pull-right">
-                            <button type="submit" className="btn btn-primary" onClick={this._onSubmit}>Submit</button>
+                            <button id="submit" type="submit" className="btn btn-primary" onClick={this._onSubmit}>Submit</button>
                         </div>
                     </div>
                 </form>
