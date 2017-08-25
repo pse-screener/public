@@ -5,6 +5,7 @@ import HomeContents from './components/HomeContents';
 import Services from './components/Services';
 import Customers from './components/Customers';
 import About from './components/About';
+import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import Registration from './components/registration/Registration';
 import SuccessRegistration from './components/registration/SuccessRegistration';
@@ -25,6 +26,7 @@ export default (
     <Route name="about" path="/about" handler={About} />
     <Route name="registration" path="/registration" handler={Registration} />
     <Route name="login" path="/login" handler={Login}/>
+    <Route name="contactUs" path="/contactUs" handler={ContactUs}/>
 
     <Route name="successRegistration" path="/successregistration" handler={SuccessRegistration} />
     // forgot password

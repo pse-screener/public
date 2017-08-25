@@ -32,20 +32,20 @@ let Login = React.createClass({
     },
     _onLoginSubmit: function(e) {
         e.preventDefault();
-        this.state.displayAlert = false;
-        this.state.errorMessage = "";
+        this.setState({displayAlert: false});
+        this.setState({errorMessage: ''});
 
         let data = {},
         username = this.refs.username.value.trim(),
         password = this.refs.password.value.trim();
 
         if (username.length < 6) {
-            this.state.errorMessage = "Invalid Email.";
-            this.state.displayAlert = true;
+            this.setState({errorMessage: 'Invalid email'});
+            this.setState({displayAlert: true});
         }
         if (password.length < 4) {
-            this.state.errorMessage = "Password should be at least 6 characters.";
-            this.state.displayAlert = true;
+            this.setState({errorMessage: 'Password should be at least 6 characters.'});
+            this.setState({displayAlert: true});
         }
 
         data.username = username;
@@ -53,7 +53,7 @@ let Login = React.createClass({
         data.grant_type = 'password';
 
         if (this.state.displayAlert)
-            this.forceUpdate();
+            return;
         else
             LoginActionCreator.onLoginSubmit(data);
     },
@@ -61,6 +61,7 @@ let Login = React.createClass({
         return (<div className="container">
             <div className="row">
                 <div className="col-xs-2 col-sm-3 col-md-4">
+                    {this.state.displayAlert ? <Alert message={this.state.errorMessage} /> : null}
                 </div>
                 <div className="col-xs-8 col-sm-6 col-md-4">
                     <div className="panel panel-default login">

@@ -1,8 +1,8 @@
 var webpack = require('webpack');
 
 var API_URL = {
-    production: JSON.stringify('http://pse-screener.sytes.net'),
-    development: JSON.stringify('http://pse-screener.sytes.net')
+    production: JSON.stringify('http://staging.pse-screener.com'),
+    development: JSON.stringify('http://staging.pse-screener.com')
 }
 
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -20,7 +20,8 @@ module.exports = {
             exclude: /(node_modules|bower_components)/,
             loader: 'babel', // 'babel-loader' is also a legal name to reference
             query: {
-                presets: ['react', 'es2015']
+                presets: ['react', 'es2015'],
+                plugins: ['transform-object-rest-spread']
             }
         }]
     },

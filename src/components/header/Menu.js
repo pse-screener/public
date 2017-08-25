@@ -12,7 +12,8 @@ export default React.createClass({
             customersCSS: (hash == "/customers") ? "active" : "",
             aboutCSS: (hash == "/about") ? "active" : "",
             loginCSS: (hash == "/login") ? "active" : "",
-            registrationCSS: (hash == "/registration") ? "active" : ""
+            registrationCSS: (hash == "/registration") ? "active" : "",
+            contactUsCSS: (hash == "/contactUs") ? "active" : ""
         }
     },
     _onClick: function(e) {
@@ -25,6 +26,7 @@ export default React.createClass({
             that.state.aboutCSS = "";
             that.state.loginCSS = "";
             that.state.registrationCSS = "";
+            that.state.contactUsCSS = "";
         }
 
         function resetActiveMenu(e) {
@@ -49,6 +51,9 @@ export default React.createClass({
                 case "registration":
                     that.state.registrationCSS = "active";
                     break;
+                case "contactus" :
+                    that.state.contactUsCSS = "active";
+                    break;
             }
         }
 
@@ -65,7 +70,7 @@ export default React.createClass({
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <Link to="/" className="navbar-brand">PSE Monitor</Link>
+                            <Link to="/" className="navbar-brand">PSE Screener</Link>
                         </div>
 
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -74,6 +79,7 @@ export default React.createClass({
                                 <li id="services" className={this.state.servicesCSS} onClick={this._onClick.bind(null, "services")} ref="services"><Link to="services">Services</Link></li>
                                 <li id="customers" className={this.state.customersCSS} onClick={this._onClick.bind(null, "customers")}><Link to="customers">Customers</Link></li>
                                 <li id="about" className={this.state.aboutCSS} onClick={this._onClick.bind(null, "about")}><Link to="about">About</Link></li>
+                                <li id="contactUs" className={this.state.contactUsCSS} onClick={this._onClick.bind(null, "contactUs")}><Link to="contactUs">Contact Us</Link></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
                                 <li id="login" className={this.state.loginCSS} onClick={this._onClick.bind(null, "login")}><a href="#myModal" role="button" data-toggle="modal"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>

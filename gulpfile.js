@@ -1,8 +1,11 @@
-var gulp = require('gulp');
-var webpack = require('webpack-stream');
-var WebpackDevServer = require("webpack-dev-server");
-var rename = require("gulp-rename");
+var gulp = require('gulp'),
+	webpack = require('webpack-stream'),
+	WebpackDevServer = require("webpack-dev-server"),
+	rename = require("gulp-rename"),
+	livereload = require('gulp-livereload');
 
+
+livereload({ start: true });
 
 gulp.task('default', ['build', 'copy-css', 'copy-font', 'copy-images']);
 
@@ -35,4 +38,8 @@ gulp.task('copy-font', function() {
 gulp.task('copy-images', function() {
 	gulp.src('./src/includes/images/*')
 	.pipe(gulp.dest('./public/images'));
+});
+
+gulp.task('watch', function() {
+	gulp.watch('./src/**/**/*.js', ['default']);
 });

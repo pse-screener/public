@@ -21,4 +21,7 @@ export default keyMirror({
 	ERROR_NO: null,
 
 	SUCCESS_REGISTRATION: null,
+
+	SENT_MESSAGE: null,
+	SEND_MESSAGE_ERROR: null
 });
