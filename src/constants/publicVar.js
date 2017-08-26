@@ -3,6 +3,8 @@ const endpoint = {
 	client_id: '1',
 	client_secret: 'GgAUZzLYJ5nrdY9Q1R4SGnbvFSlbJk5HzdMEiXBb',
 
+	sitekey: '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i', // Recaptcha
+
 	getEndpoint: function() {
 		return API_URL;
 	},

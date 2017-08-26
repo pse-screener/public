@@ -6,17 +6,15 @@ import $ from 'jquery';
 import Recaptcha from 'react-recaptcha';
 import { HashLocation } from 'react-router';
 import Spinner from '../Spinner';
-
-const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
-
-var reCaptchaCallback = function() {};
+import publicVar from '../../constants/publicVar';
 
 let Registration = {
     getInitialState: function() {
         return {
             displayAlert: false,
             errorMessage: "",
-            showSpinner: false
+            showSpinner: false,
+            captchaString: ''
         };
     },
     componentDidMount: function() {
@@ -44,6 +42,11 @@ let Registration = {
                 this.setState({displayAlert: true, errorMessage: errorAsText, showSpinner: false});
             }
         }
+
+        $("#submit").removeClass("disabled");
+    },
+    recaptchaVerifyCallback: function(string) {
+        this.setState({captchaString: string});
     },
     _onSubmit: function(e) {
         e.preventDefault();
@@ -97,16 +100,14 @@ let Registration = {
             this.setState({errorMessage: "Password and confirm password are not the same.", displayAlert: true, showSpinner: false});
             return;
         }
+        if (this.state.captchaString === '') {
+            this.setState({errorMessage: "Please resolve captcha.", displayAlert: true, showSpinner: false});
+            return;
+        }
 
         formComponent.find('[name]').each(function(index, component) {
             data[component.name] = component.value;
         });
-
-        /*if (this.state.displayAlert) {
-            this.forceUpdate();
-        } else {
-              
-        }*/
 
         $("#submit").addClass("disabled");
         RegistrationActionCreator.onSubmit(data);      
@@ -184,7 +185,7 @@ let Registration = {
                         <div className="form-group registerSubGroup">
                             <p>Refresh the page if no captcha image is shown below.</p>
                             <div className="col-md-4">
-                                <Recaptcha sitekey={sitekey} render="explicit" onloadCallback={reCaptchaCallback} />
+                                <Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
                             </div>
                         </div>
 

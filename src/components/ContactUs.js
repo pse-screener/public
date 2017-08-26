@@ -3,6 +3,8 @@ import Alert from './Alert';
 import ContactUsActionCreator from '../actions/ContactUsActionCreator';
 import ContactUsStore from '../stores/ContactUsStore';
 import Spinner from './Spinner';
+import Recaptcha from 'react-recaptcha';
+import publicVar from '../constants/publicVar';
 
 class ContactUs extends Component {
 	constructor(props) {
@@ -14,11 +16,13 @@ class ContactUs extends Component {
 					alertMessage: '',
 					alertType: ''
 				},
-			showSpinner: false
+			showSpinner: false,
+			recaptchaString: ''
 		};
 
 		this._handleSubmit = this._handleSubmit.bind(this);
 		this._onSendingMessage = this._onSendingMessage.bind(this);
+		this.recaptchaVerifyCallback = this.recaptchaVerifyCallback.bind(this);
 	}
 
 	componentDidMount() {
@@ -45,7 +49,7 @@ class ContactUs extends Component {
 			alert.alertMessage = response.message;
 			alert.alertType = 'success';
 
-			this.setState({alert, showSpinner: false});
+			this.setState({alert, showSpinner: false, recaptchaString: ''});
 		}
 	}
 
@@ -56,6 +60,13 @@ class ContactUs extends Component {
 
 		e.preventDefault();
 
+		if (this.state.recaptchaString === '') {
+			alert = {...this.state.alert};
+			alert.showAlert = true; alert.alertMessage = 'Please resolve captcha', alert.alertType = 'danger';
+			this.setState({alert, showSpinner: false});
+			return;
+		}
+
 		const data = {
 			fName: this.refs.fName.value.trim(),
 			lName: this.refs.lName.value.trim(),
@@ -65,6 +76,10 @@ class ContactUs extends Component {
 		};
 
 		ContactUsActionCreator.onSubmit(data);
+	}
+
+	recaptchaVerifyCallback(string) {
+		this.setState({recaptchaString: string});
 	}
 
 	render() {
@@ -89,6 +104,9 @@ class ContactUs extends Component {
                                 </div>
                                 <div className="col-xs-12" style={{marginTop: '20px'}}>
                                     <textarea ref="message" name="message" className="form-control" placeholder="Your issue or your message. *" rows="4" required="required"></textarea>
+                                </div>
+                                <div className="col-xs-12" style={{marginTop: '20px'}}>
+                                	<Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
                                 </div>
                                 <div className="col-xs-12" style={{textAlign: 'center', marginTop: '20px'}}>
                                     <input ref="sendMessage" type="submit" className="btn btn-primary btn-lg" value="Send message" />
