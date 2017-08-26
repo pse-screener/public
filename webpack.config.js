@@ -1,8 +1,8 @@
 var webpack = require('webpack');
 
 var API_URL = {
-    production: JSON.stringify('http://pse-screener.sytes.net'),
-    development: JSON.stringify('http://staging.pse-screener.com')
+    production: JSON.stringify('http://pse-screener.ml'),
+    development: JSON.stringify('http://staging.pse-screener.ml')
 }
 
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
