@@ -24,7 +24,10 @@ gulp.task('build', function() {
 });
 
 gulp.task('copy-css', function() {
-	gulp.src('./src/includes/css/*.css')
+	gulp.src([
+			'!./src/includes/css/loader.css',
+			'./src/includes/css/*.css'
+		])
 	.pipe(gulp.dest('./public/css'))
 	.pipe(livereload());
 });

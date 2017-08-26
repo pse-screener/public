@@ -6,6 +6,7 @@ import LoginActionCreator from '../../actions/LoginActionCreator';
 import LoginStore from '../../stores/LoginStore';
 import $ from 'jquery';
 import publicVar from '../../constants/publicVar';
+import Spinner from '../Spinner';
 
 function getAccessToken() {
     return LoginStore.getAccessToken();
@@ -13,11 +14,10 @@ function getAccessToken() {
 
 module.exports = React.createClass({
 	getInitialState: function() {
-        return {
-            displayAlert: false,
-            errorMessage: ""
-        }
-    },
+		return {
+			showSpinner: false
+		}
+	},
     componentDidMount: function() {
         LoginStore.addChangeListener(this._onLoginRequest);
     },
@@ -29,6 +29,7 @@ module.exports = React.createClass({
         let errorObject = LoginStore.getErrorReason();
 
         if (errorObject) {
+        	this.setState({showSpinner: false});
         	$('#closeBtn').click();
 			window.location = publicVar.gotoLoginPage();
         } else {
@@ -37,29 +38,20 @@ module.exports = React.createClass({
     },
     _onLoginSubmit: function(e) {
         e.preventDefault();
-        this.state.displayAlert = false;
-        this.state.errorMessage = "";
+
+        this.setState({showSpinner: true});
 
         let data = {},
         username = this.refs.username.value.trim(),
         password = this.refs.password.value.trim();
 
-        if (username.length < 6) {
-            this.state.errorMessage = "Invalid Email.";
-            this.state.displayAlert = true;
-        }
-        if (password.length < 6) {
-            this.state.errorMessage = "Password should be at least 6 characters.";
-            this.state.displayAlert = true;
-        }
-
         data.username = username;
         data.password = password;
         data.grant_type = 'password';
 
-        if (this.state.displayAlert)
+        /*if (this.state.displayAlert)
             this.forceUpdate();
-        else
+        else*/
             LoginActionCreator.onLoginSubmit(data);
     },
     _onForgotPasswordClicked: function() {
@@ -78,6 +70,7 @@ module.exports = React.createClass({
 		                    <div className="modal-subtitle"><small>Enter your username and password</small></div>
 		                </div>
 		                <div className="modal-body">
+		                	{ this.state.showSpinner ? <Spinner /> : null }
 		                    <form method="post" action="#" className="form-horizontal">
 		                        <div className="form-group">
 		                             <label htmlFor="inputEmail" className="col-sm-2 control-label">Email</label>

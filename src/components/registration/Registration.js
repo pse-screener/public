@@ -5,6 +5,7 @@ import Alert from '../Alert';
 import $ from 'jquery';
 import Recaptcha from 'react-recaptcha';
 import { HashLocation } from 'react-router';
+import Spinner from '../Spinner';
 
 const sitekey = '6LfmBQcUAAAAAC8CQopKjGeRqlexZbrbtNfPU_5i';
 
@@ -14,7 +15,8 @@ let Registration = {
     getInitialState: function() {
         return {
             displayAlert: false,
-            errorMessage: ""
+            errorMessage: "",
+            showSpinner: false
         };
     },
     componentDidMount: function() {
@@ -27,26 +29,29 @@ let Registration = {
         let errorObject = RegistrationStore.getErrorObject();
         let successObject = RegistrationStore.getSuccessObject();
 
-        var errorAsText = "";
+        let errorAsText = "";
         if (errorObject) {
-            for (var key in errorObject.jqXHR.responseJSON) {
+            for (let key in errorObject.jqXHR.responseJSON) {
                 errorAsText = errorAsText.concat(errorObject.jqXHR.responseJSON[key][0]);
             }
 
-            this.setState({displayAlert: true, errorMessage: errorAsText});
+            this.setState({displayAlert: true, errorMessage: errorAsText, showSpinner: false});
         } else if (successObject) {
             if (successObject.code == 0) {
                 HashLocation.push('/successregistration');
             } else {
                 errorAsText = successObject.message;
-                this.setState({displayAlert: true, errorMessage: errorAsText});
+                this.setState({displayAlert: true, errorMessage: errorAsText, showSpinner: false});
             }
         }
     },
     _onSubmit: function(e) {
         e.preventDefault();
-        this.state.displayAlert = false;
-        this.state.errorMessage = "";
+
+        if ($("#submit").hasClass("disabled"))
+            return;
+
+        this.setState({displayAlert: false, errorMessage: '', showSpinner: true});
         RegistrationStore.setErrorObject();
         RegistrationStore.setSuccessObject();
 
@@ -61,35 +66,35 @@ let Registration = {
         password_confirmation = this.refs.password_confirmation.value.trim();
 
         if (gender == 0) {
-            this.setState({errorMessage: "Please choose your gender.", displayAlert: true});
+            this.setState({errorMessage: "Please choose your gender.", displayAlert: true, showSpinner: false});
             return;
         }
         if (mobileNo.length < 7) {
-            this.setState({errorMessage: "Invalid mobile number.", displayAlert: true});
+            this.setState({errorMessage: "Invalid mobile number.", displayAlert: true, showSpinner: false});
             return;
         }
         if (fName.length < 2) {
-            this.setState({errorMessage: "Invalid first name.", displayAlert: true});
+            this.setState({errorMessage: "Invalid first name.", displayAlert: true, showSpinner: false});
             return;
         }
         if (lName.length < 2) {
-            this.setState({errorMessage: "Invalid last name.", displayAlert: true});
+            this.setState({errorMessage: "Invalid last name.", displayAlert: true, showSpinner: false});
             return;
         }
         if (email.length < 6) {
-            this.setState({errorMessage: "Invalid e-mail.", displayAlert: true});
+            this.setState({errorMessage: "Invalid e-mail.", displayAlert: true, showSpinner: false});
             return;
         }        
         if (password.length < 6) {
-            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
+            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true, showSpinner: false});
             return;
         }        
         if (password_confirmation.length < 6) {
-            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true});
+            this.setState({errorMessage: "Password should be at least 6 alphanumeric characters.", displayAlert: true, showSpinner: false});
             return;
         }        
         if (password !== password_confirmation) {
-            this.setState({errorMessage: "Password and confirm password are not the same.", displayAlert: true});
+            this.setState({errorMessage: "Password and confirm password are not the same.", displayAlert: true, showSpinner: false});
             return;
         }
 
@@ -97,102 +102,105 @@ let Registration = {
             data[component.name] = component.value;
         });
 
-        if (this.state.displayAlert) {
+        /*if (this.state.displayAlert) {
             this.forceUpdate();
         } else {
-            $("#submit").addClass("disabled");
-            RegistrationActionCreator.onSubmit(data);        
-        }
+              
+        }*/
+
+        $("#submit").addClass("disabled");
+        RegistrationActionCreator.onSubmit(data);      
     },
     _onCancel: function() {
         this.refs.registrationForm.getDOMNode().reset;
     },
 	render: function() {
-		return (<div className="container">
+		return (
+            <div className="container">
+                { this.state.showSpinner ? <Spinner /> : null }
 				<div className="row">
-            <div className="col-sm-6">
-                <h4 className="page_title">Register</h4>
-                <hr />
-                <p>Fill out the form completely to use the services.</p>
-                <Alert message={this.state.errorMessage} alertType="danger" />
-                <hr />
-
-                <form className="form-horizontal" id="form" ref="registrationForm" method="post" action="#">
+                    <div className="col-sm-6">
+                    <h4 className="page_title">Register</h4>
                     <hr />
-                    <h5>Administrator</h5> <hr />
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-2 control-label" htmlFor="fName">First name</label>
-                        <div className="col-sm-4">
-                            <input type="text" className="form-control" id="fName" name="fName" placeholder="First name" ref="fName" />
-                        </div>
-                        <label className="col-sm-2 control-label" htmlFor="lName">Last name</label>
-                        <div className="col-sm-4">
-                            <input type="text" className="form-control" id="lName" name="lName" placeholder="Last name" ref="lName" />
-                        </div>
-                    </div>
-                    
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="email">Email</label>
-                        <div className="col-sm-9">
-                            <input type="email" className="form-control" id="email" name="email" placeholder="User email" ref="email" />
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="gender">Gender</label>
-                        <div className="col-sm-9">
-                            <select className="form-control" id="gender" name="gender" ref="gender">
-                                <option value="0">-- select --</option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="password">Password</label>
-                        <div className="col-sm-9">
-                            <input type="password" className="form-control" id="password" name="password" placeholder="Password" ref="password" />
-                        </div>
-                    </div>
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="password_confirmation">Confirm Password</label>
-                        <div className="col-sm-9">
-                            <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ref="password_confirmation" />
-                            <span id="helpBlock" className="help-block">We recommend not to use your broker password here.</span>
-                        </div>
-                    </div>
-
-                    <div className="form-group registerSubGroup">
-                        <label className="col-sm-3 control-label" htmlFor="mobileNo">Mobile number</label>
-                        <div className="col-sm-9">
-                            <input className="form-control" type="text" id="mobileNo" name="mobileNo" placeholder="09178888888" maxLength="11" minLength="11" ref="mobileNo" />
-                        </div>
-                    </div>
+                    <p>Fill out the form completely to use the services.</p>
+                    <Alert message={this.state.errorMessage} alertType="danger" />
                     <hr />
 
-                    <h5>Captcha</h5>
-                    <div className="form-group registerSubGroup">
-                        <p>Refresh the page if no captcha image is shown below.</p>
-                        <div className="col-md-4">
-                            <Recaptcha sitekey={sitekey} render="explicit" onloadCallback={reCaptchaCallback} />
-                        </div>
-                    </div>
-
-                    <div className="form-group">
+                    <form className="form-horizontal" id="form" ref="registrationForm" method="post" action="#" onSubmit={this._onSubmit}>
                         <hr />
-                        <div className="pull-right">
-                            <button id="submit" type="submit" className="btn btn-primary" onClick={this._onSubmit}>Submit</button>
+                        <h5>Administrator</h5> <hr />
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-2 control-label" htmlFor="fName">First name</label>
+                            <div className="col-sm-4">
+                                <input type="text" className="form-control" id="fName" name="fName" placeholder="First name" ref="fName" required="required" />
+                            </div>
+                            <label className="col-sm-2 control-label" htmlFor="lName">Last name</label>
+                            <div className="col-sm-4">
+                                <input type="text" className="form-control" id="lName" name="lName" placeholder="Last name" ref="lName" required="required" />
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                        
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-3 control-label" htmlFor="email">Email</label>
+                            <div className="col-sm-9">
+                                <input type="email" className="form-control" id="email" name="email" placeholder="User email" ref="email" required="required" />
+                            </div>
+                        </div>
 
-            <div className="col-sm-6">
-            </div>
-        </div>
-			</div>
-			);
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-3 control-label" htmlFor="gender">Gender</label>
+                            <div className="col-sm-9">
+                                <select className="form-control" id="gender" name="gender" ref="gender" required="required">
+                                    <option value="0">-- select --</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-3 control-label" htmlFor="password">Password</label>
+                            <div className="col-sm-9">
+                                <input type="password" className="form-control" id="password" name="password" placeholder="Password" ref="password" required="required" />
+                            </div>
+                        </div>
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-3 control-label" htmlFor="password_confirmation">Confirm Password</label>
+                            <div className="col-sm-9">
+                                <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" ref="password_confirmation" required="required" />
+                                <span id="helpBlock" className="help-block">We recommend not to use your broker password here.</span>
+                            </div>
+                        </div>
+
+                        <div className="form-group registerSubGroup">
+                            <label className="col-sm-3 control-label" htmlFor="mobileNo">Mobile number</label>
+                            <div className="col-sm-9">
+                                <input className="form-control" type="text" id="mobileNo" name="mobileNo" placeholder="09178888888" maxLength="11" minLength="11" ref="mobileNo" required="required" />
+                            </div>
+                        </div>
+                        <hr />
+
+                        <h5>Captcha</h5>
+                        <div className="form-group registerSubGroup">
+                            <p>Refresh the page if no captcha image is shown below.</p>
+                            <div className="col-md-4">
+                                <Recaptcha sitekey={sitekey} render="explicit" onloadCallback={reCaptchaCallback} />
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <hr />
+                            <div className="pull-right">
+                                <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+
+                    <div className="col-sm-6">
+                    </div>
+                </div>
+			</div>);
 	}
 };
 

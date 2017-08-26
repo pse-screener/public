@@ -15,15 +15,21 @@ module.exports = {
             loaders: ['eslint'],
             //include: PATHS.app
         }],*/
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel', // 'babel-loader' is also a legal name to reference
-            query: {
-                presets: ['react', 'es2015'],
-                plugins: ['transform-object-rest-spread']
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel', // 'babel-loader' is also a legal name to reference
+                query: {
+                    presets: ['react', 'es2015'],
+                    plugins: ['transform-object-rest-spread']
+                }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css'
             }
-        }]
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

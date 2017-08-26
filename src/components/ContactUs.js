@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Alert from './Alert';
 import ContactUsActionCreator from '../actions/ContactUsActionCreator';
 import ContactUsStore from '../stores/ContactUsStore';
+import Spinner from './Spinner';
 
 class ContactUs extends Component {
 	constructor(props) {
@@ -12,7 +13,8 @@ class ContactUs extends Component {
 					showAlert: false,
 					alertMessage: '',
 					alertType: ''
-				}
+				},
+			showSpinner: false
 		};
 
 		this._handleSubmit = this._handleSubmit.bind(this);
@@ -38,19 +40,19 @@ class ContactUs extends Component {
 			alert.alertMessage = error.errorThrown;
 			alert.alertType = 'danger';
 
-			this.setState({alert});
+			this.setState({alert, showSpinner: false});
 		} else if (response) {
 			alert.alertMessage = response.message;
 			alert.alertType = 'success';
 
-			this.setState({alert});
+			this.setState({alert, showSpinner: false});
 		}
 	}
 
 	_handleSubmit(e) {
 		let alert = {...this.state.alert};
 		alert.showAlert = false; alert.alertMessage = '', alert.alertType = '';
-		this.setState({alert});
+		this.setState({alert, showSpinner: true});
 
 		e.preventDefault();
 
@@ -70,7 +72,8 @@ class ContactUs extends Component {
 			<div className="container">
 				<div className="row">
                     <div className="col-md-8 col-md-offset-2">
-                    	{this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null}
+                    	{ this.state.showSpinner ? <Spinner /> : null}
+                    	{ this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null }
                         <form onSubmit={this._handleSubmit}>
                                 <div className="col-sm-6 col-md-6" style={{marginTop: '20px'}}>
                                     <input ref="fName" type="text" name="fName" className="form-control" placeholder="First name *" required="required" />

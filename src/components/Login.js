@@ -3,6 +3,7 @@ import Alert from './Alert';
 import { Link } from 'react-router';
 import LoginActionCreator from '../actions/LoginActionCreator';
 import LoginStore from '../stores/LoginStore';
+import Spinner from './Spinner';
 
 function getAccessToken() {
     return LoginStore.getAccessToken();
@@ -12,7 +13,8 @@ let Login = React.createClass({
     getInitialState: function() {
         return {
             displayAlert: false,
-            errorMessage: ""
+            errorMessage: "",
+            showSpinner: false
         }
     },
     componentDidMount: function() {
@@ -25,43 +27,43 @@ let Login = React.createClass({
         let accessToken = getAccessToken();
         let errorObject = LoginStore.getErrorReason();
 
+        this.setState({showSpinner: false});
+
         if (errorObject) {
-            // notryrin
-        } else
+            console.log(errorObject);
+            this.setState({displayAlert: true, errorMessage: errorObject.errorThrown, showSpinner: false});
+        } else {
             LoginActionCreator.loginToAdmin(accessToken.access_token);            
+        }
     },
     _onLoginSubmit: function(e) {
         e.preventDefault();
-        this.setState({displayAlert: false});
-        this.setState({errorMessage: ''});
+        this.setState({displayAlert: false, errorMessage: '', showSpinner: true});
 
         let data = {},
         username = this.refs.username.value.trim(),
         password = this.refs.password.value.trim();
 
         if (username.length < 6) {
-            this.setState({errorMessage: 'Invalid email'});
-            this.setState({displayAlert: true});
+            this.setState({errorMessage: 'Invalid email', displayAlert: true, showSpinner: false});
+            return;
         }
-        if (password.length < 4) {
-            this.setState({errorMessage: 'Password should be at least 6 characters.'});
-            this.setState({displayAlert: true});
+        if (password.length < 6) {
+            this.setState({errorMessage: 'Invalid password.', displayAlert: true, showSpinner: false});
+            return;
         }
 
         data.username = username;
         data.password = password;
         data.grant_type = 'password';
 
-        if (this.state.displayAlert)
-            return;
-        else
-            LoginActionCreator.onLoginSubmit(data);
+        LoginActionCreator.onLoginSubmit(data);
     },
     render: function() {
         return (<div className="container">
             <div className="row">
                 <div className="col-xs-2 col-sm-3 col-md-4">
-                    {this.state.displayAlert ? <Alert message={this.state.errorMessage} /> : null}
+                    {this.state.displayAlert ? <Alert message={this.state.errorMessage} alertType='danger' /> : null}
                 </div>
                 <div className="col-xs-8 col-sm-6 col-md-4">
                     <div className="panel panel-default login">
@@ -69,23 +71,23 @@ let Login = React.createClass({
                             <h3 className="panel-title">Login</h3>
                         </div>
                         <div className="panel-body">
-                            <form method="post" action="#">
+                            { this.state.showSpinner ? <Spinner /> : null }
+                            <form method="post" action="#" onSubmit={this._onLoginSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="username">Email</label>
-                                    <input type="email" className="form-control" id="username" name="username" ref="username" placeholder="Username" />
+                                    <input type="email" className="form-control" id="username" name="username" ref="username" placeholder="Username" required="required" />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" className="form-control" id="password" name="password" ref="password" placeholder="Password" />
+                                    <input type="password" className="form-control" id="password" name="password" ref="password" placeholder="Password" required="required" />
                                 </div>
-                                <button type="submit" className="btn btn-primary" onClick={this._onLoginSubmit}>Login</button>
+                                <button type="submit" className="btn btn-primary">Login</button>
                                 <Link to="forgotpassword" className="pull-right">Forgot password</Link>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div className="col-sm-2 col-sm-3 col-md-4">
-                    <Alert message={this.state.errorMessage} alertType="danger" />
                 </div>
             </div>
         </div>);
