@@ -86,7 +86,15 @@ class ContactUs extends Component {
 		return (
 			<div className="container">
 				<div className="row">
-                    <div className="col-md-8 col-md-offset-2">
+					<div className="col-xs-12">
+						<h4 className="page_title">Contact Us</h4>
+			            <hr />
+						<h4>If you have question, verification, or issues regarding the site?</h4>
+						<p>Reach us through this channel and we're happy to assist you.</p>
+					</div>
+				</div>
+				<div className="row">
+                    <div className="col-sm-8 col-sm-offset-2">
                     	{ this.state.showSpinner ? <Spinner /> : null}
                     	{ this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null }
                         <form onSubmit={this._handleSubmit}>
@@ -114,6 +122,7 @@ class ContactUs extends Component {
                         </form>
                     </div>
                 </div>
+                <div style={{marginBottom: '20px'}}></div>
 			</div>
 		);
 	}
