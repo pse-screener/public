@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './header/Menu';
+import { Link } from 'react-router';
 
 export default React.createClass({
 	//mixin: []
@@ -17,7 +18,8 @@ export default React.createClass({
 		return (<div className="container">
 					<h4 className="page_title">Services</h4>
 		            <hr />
-					Sends SMS message to users based on their criteria on PSE stock prices.
+		            <h3>Looking for an alert system of the daily stock prices right to your mobile phone?</h3>
+					We offer free SMS alert service for all registered user of the site. Yes it's absolutely free of charge! In order to get free from our services, you have to register to avail. It is needed to keep track of all our users. To register click <Link to="registration"><strong>here</strong></Link>.
 				</div>
 		);
 	}

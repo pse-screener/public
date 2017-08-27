@@ -1,12 +1,15 @@
 'use strict';
 import React from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
 	render: function() {
 		return (<div className="container">
 					<h4 className="page_title">Customers</h4>
 		            <hr />
-					<p>Customers who are engaged in PSE are welcome to register. However, we encourage not to use your password you use with your broker for you and our protection though we cannot decrypt your password.</p>
+		            <h3>Are you a trader or a stock investor?</h3>
+		            <p>You came into the right place! Whether you are a trader or an investor that monitors stock prices we can take care of it. </p>
+		            <p>Register <Link to="registration"><strong>here</strong></Link> for absolutely free of charge.</p>
 				</div>
 		);
 	}
