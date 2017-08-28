@@ -17,11 +17,20 @@ class ContactUs extends Component {
 					alertType: ''
 				},
 			showSpinner: false,
-			recaptchaString: ''
+			recaptchaString: '',
+			messageData: {
+				fName: '',
+				lName: '',
+				email: '',
+				phoneNo: '',
+				message: '',
+				'g-recaptcha-response': ''
+			}
 		};
 
 		this._handleSubmit = this._handleSubmit.bind(this);
 		this._onSendingMessage = this._onSendingMessage.bind(this);
+		this._handleInputChange = this._handleInputChange.bind(this);
 		this.recaptchaVerifyCallback = this.recaptchaVerifyCallback.bind(this);
 	}
 
@@ -53,12 +62,21 @@ class ContactUs extends Component {
 		}
 	}
 
-	_handleSubmit(e) {
+	_handleInputChange(event) {
+		const name = event.target.name;
+		let messageData = {...this.state.messageData};
+		messageData[name] = event.target.value;
+
+		this.setState({messageData});
+	}
+
+	_handleSubmit(event) {
 		let alert = {...this.state.alert};
 		alert.showAlert = false; alert.alertMessage = '', alert.alertType = '';
+
 		this.setState({alert, showSpinner: true});
 
-		e.preventDefault();
+		event.preventDefault();
 
 		if (this.state.recaptchaString === '') {
 			alert = {...this.state.alert};
@@ -67,15 +85,10 @@ class ContactUs extends Component {
 			return;
 		}
 
-		const data = {
-			fName: this.refs.fName.value.trim(),
-			lName: this.refs.lName.value.trim(),
-			email: this.refs.email.value.trim(),
-			phoneNo: this.refs.phoneNo.value.trim(),
-			message: this.refs.message.value.trim()
-		};
+		let messageData = {...this.state.messageData};
+		messageData["g-recaptcha-response"] = this.state.recaptchaString;
 
-		ContactUsActionCreator.onSubmit(data);
+		ContactUsActionCreator.onSubmit(messageData);
 	}
 
 	recaptchaVerifyCallback(string) {
@@ -99,25 +112,25 @@ class ContactUs extends Component {
                     	{ this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null }
                         <form onSubmit={this._handleSubmit}>
                                 <div className="col-sm-6 col-md-6" style={{marginTop: '20px'}}>
-                                    <input ref="fName" type="text" name="fName" className="form-control" placeholder="First name *" required="required" />
+                                    <input type="text" name="fName" className="form-control" placeholder="First name *" required="required" value={this.state.messageData.fName} onChange={this._handleInputChange} />
                                 </div>
                                 <div className="col-sm-6 col-md-6" style={{marginTop: '20px'}}>
-                                    <input ref="lName" type="text" name="lName" className="form-control" placeholder="Last name *" required="required" />
+                                    <input type="text" name="lName" className="form-control" placeholder="Last name *" required="required" value={this.state.messageData.lName} onChange={this._handleInputChange} />
                                 </div>
                                 <div className="col-sm-6 col-md-6" style={{marginTop: '20px'}}>
-                                    <input ref="email" type="text" name="email" className="form-control" placeholder="Email *" required="required" />
+                                    <input type="text" name="email" className="form-control" placeholder="Email *" required="required" value={this.state.messageData.email} onChange={this._handleInputChange} />
                                 </div>
                                 <div className="col-sm-6 col-md-6" style={{marginTop: '20px'}}>
-                                    <input ref="phoneNo" type="text" name="phone" className="form-control" placeholder="Phone number" />
+                                    <input type="text" name="phoneNo" className="form-control" placeholder="Phone number" value={this.state.messageData.phoneNo} onChange={this._handleInputChange} />
                                 </div>
                                 <div className="col-xs-12" style={{marginTop: '20px'}}>
-                                    <textarea ref="message" name="message" className="form-control" placeholder="Your issue or your message. *" rows="4" required="required"></textarea>
+                                    <textarea name="message" className="form-control" placeholder="Your issue or your message. *" rows="4" required="required" value={this.state.messageData.message} onChange={this._handleInputChange}></textarea>
                                 </div>
                                 <div className="col-xs-12" style={{marginTop: '20px'}}>
                                 	<Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
                                 </div>
                                 <div className="col-xs-12" style={{textAlign: 'center', marginTop: '20px'}}>
-                                    <input ref="sendMessage" type="submit" className="btn btn-primary btn-lg" value="Send message" />
+                                    <input type="submit" className="btn btn-primary btn-lg" value="Send message" />
                                 </div>
                         </form>
                     </div>

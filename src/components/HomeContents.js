@@ -28,10 +28,8 @@ var Home = {
                             <h4>PSE Screener Alert System</h4>
                         </div>
                         <h4>Sends an SMS to a Philippine registered mobile number to alert user based on their criteria.</h4>
-                        <br />
-                        <br />
                         The service doesn't cost you a penny because it's absolutely free of charge. If you have no time to check the current prices of the stocks, cannot get online, or very much committed to other tasks, this is the answer.
-                        <br /><br /><Link to="registration" className="btn btn-success btn-lg">Register here for free</Link>
+                        <br /><Link to="registration" className="btn btn-success btn-lg" style={{marginTop: '20px'}}>Register here for free</Link>
                     </div>
                 </div>);
     }
