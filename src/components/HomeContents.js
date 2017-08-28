@@ -3,6 +3,10 @@ import React from 'react';
 import { Link } from 'react-router';
 
 var Home = {
+    componentDidMount: function() {
+        $('.carousel').carousel();
+    },
+    
     render: function() {
         return (<div className="container">
                     <div className="carousel slide" id="myCarousel">
