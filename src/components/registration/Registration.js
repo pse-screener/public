@@ -128,8 +128,6 @@ let Registration = {
                     <hr />
 
                     <form className="form-horizontal" id="form" ref="registrationForm" method="post" action="#" onSubmit={this._onSubmit}>
-                        <hr />
-                        <h5>Administrator</h5> <hr />
                         <div className="form-group registerSubGroup">
                             <label className="col-sm-2 control-label" htmlFor="fName">First name</label>
                             <div className="col-sm-4">
@@ -183,16 +181,18 @@ let Registration = {
 
                         <h5>Captcha</h5>
                         <div className="form-group registerSubGroup">
-                            <p>Refresh the page if no captcha image is shown below.</p>
-                            <div className="col-md-4">
+                            <div className="col-sm-12">
+                                <p>Refresh the page if no captcha image is shown below.</p>
                                 <Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
                             </div>
                         </div>
 
                         <div className="form-group">
-                            <hr />
-                            <div className="pull-right">
-                                <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                            <div className="col-sm-12">
+                                <hr />
+                                <div className="pull-right">
+                                    <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                                </div>
                             </div>
                         </div>
                     </form>
