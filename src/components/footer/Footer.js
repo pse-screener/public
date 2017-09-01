@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 export default React.createClass({
     render: function() {
+    	const url = API_URL + "/public/#/contactUs";
+
         return (<div id="footer">
                     <div className="container">
                     	<div className="row">
@@ -18,7 +20,10 @@ export default React.createClass({
 			                        <li><Link to="about"><span className="glyphicon glyphicon-grain"></span> About Us</Link></li>
 			                    </ul>
 			                </div>
-			                <div className="col-sm-8"></div>
+			                <div className="col-sm-4">
+			                	
+			                </div>
+			                <div className="col-sm-4"></div>
 			            </div>
                     </div>
                 </div>);
