@@ -24,9 +24,7 @@ export default React.createClass({
 						<div className="col-sm-6"><br />
 							<div className="media">
 								<div className="media-left">
-									<a href="#">
-										<img className="media-object" src="public/images/price-graph.png" />
-									</a>
+									<img className="media-object" src="public/images/price-graph.png" />
 								</div>
 								<div className="media-body">
 									<h4 className="media-heading">Stock Price</h4>
@@ -35,13 +33,11 @@ export default React.createClass({
 							</div>
 							<div className="media">
 								<div className="media-left">
-									<a href="#">
-										<img className="media-object" src="public/images/volume-graph.png" />
-									</a>
+									<img className="media-object" src="public/images/volume-graph.png" />
 								</div>
 								<div className="media-body">
 									<h4 className="media-heading">Volume Traded</h4>
-									This is similar to the price alert but in terms of volume traded during the day. (This is currently not available at the moment but keep in touch as we include this very soon in your admin.)
+									This is similar to the price alert but in terms of volume traded during the day. (This is currently not available at the moment but keep in touch as we include this very soon in your admin page.)
 								</div>
 							</div>
 						</div>
@@ -49,11 +45,11 @@ export default React.createClass({
 					<br /><br />
 					<h4>Importance of SMS Messaging</h4>
 					<p>In this advanced world, mobile services like SMS or widely known as text messages has been indispensable tools in todays' 21st century. It has been a tool to communicate specially in the Philippines where during the early years of mobile penetration became the the text messaging capital of the world.</p>
-					<p>Josefina T. Lichauco wrote an article <a href="The Philippine text messaging phenomenon">The Philippine text messaging phenomenon</a> it says that SMS (Short Message Service) has given rise to a subculture with its own lingo, folklore and etiquette. Fact is, in the Philippines, the words ‘I will call you’ have been replaced by ‘I will text you.’.
+					<p>Josefina T. Lichauco wrote an article <a href="http://www.philstar.com/business-life/85823/philippine-text-messaging-phenomenon" target="_blank">The Philippine text messaging phenomenon</a> it says that SMS (Short Message Service) has given rise to a subculture with its own lingo, folklore and etiquette. Fact is, in the Philippines, the words ‘I will call you’ have been replaced by ‘I will text you.’.
 					In my humber opinion, Filipinos prefer text messaging because it's cheaper than call and that calling someone with mobile phone is pricier than a single text message. Also, text message is a way to deliver a message without disturbing or wasting too much time with someone who is currently busy or at least informing him/her to
 					reply when he/she doesn't want to talk to. I know lovers out there can relate to this.
 					</p>
-					<p>With the affordability and introduction of prepaid with no monthly fees it dramatically became popular and relevant to every day living. Ben Parr said in his 2010 article, <a href="http://mashable.com/2010/10/14/nielsen-texting-stats/#2WT11q0MxSqM">the average teenager sends 3,339 texts per month</a>. That's more than six texts per waking hour.</p>
+					<p>With the affordability and introduction of prepaid with no monthly fees it dramatically became popular and relevant to every day living. Ben Parr said in his 2010 article, <a href="http://mashable.com/2010/10/14/nielsen-texting-stats" target="_blank">the average teenager sends 3,339 texts per month</a>. That's more than six texts per waking hour.</p>
 					<br />
 					<img src="public/images/2156_chart1.jpg" /><br /><br />
 					<p>According to a new study from Nielsen, our society has gone mad with texting, data usage and app downloads. Nielsen analyzed the mobile data habits of more than 60,000 mobile subscribers and surveyed more than 3,000 teens during April, May and June of this year 2010. The numbers they came up with are astounding.
