@@ -18,11 +18,32 @@ export default React.createClass({
 		return (<div className="container">
 					<h4 className="page_title">Services</h4>
 		            <hr />
-		            <h3>Looking for an alert system of the daily stock prices right to your mobile phone?</h3>
-					We offer free SMS alert service for all registered user of the site. Yes it's absolutely free of charge! In order to get free from our services, you have to register to avail. It is needed to keep track of all our users. To register click <Link to="registration"><strong>here</strong></Link>.
+		            <h3>Looking for an alert system of the daily stock prices and volumes right to your mobile phone?</h3>
+					We offer free SMS alert service for all registered user of the site. Yes it's absolutely free of charge! In order to get free from our services, you have to register to avail. It is needed to keep track of all our users. The registration only takes less than a minute and the admin page is so easy to use. To register click <Link to="registration"><strong>here</strong></Link>.
 					<div className="row">
-						<div className="col-sm-6">
-							
+						<div className="col-sm-6"><br />
+							<div className="media">
+								<div className="media-left">
+									<a href="#">
+										<img className="media-object" src="public/images/price-graph.png" />
+									</a>
+								</div>
+								<div className="media-body">
+									<h4 className="media-heading">Stock Price</h4>
+									Busy for the day or two, cannot get online but wants to know the current price automatically sent to your mobile phone? This is what you're looking for.
+								</div>
+							</div>
+							<div className="media">
+								<div className="media-left">
+									<a href="#">
+										<img className="media-object" src="public/images/volume-graph.png" />
+									</a>
+								</div>
+								<div className="media-body">
+									<h4 className="media-heading">Volume Traded</h4>
+									This is similar to the price alert but in terms of volume traded during the day. (This is currently not available at the moment but keep in touch as we include this very soon in your admin.)
+								</div>
+							</div>
 						</div>
 					</div>
 					<br /><br />
@@ -30,7 +51,7 @@ export default React.createClass({
 					<p>In this advanced world, mobile services like SMS or widely known as text messages has been indispensable tools in todays' 21st century. It has been a tool to communicate specially in the Philippines where during the early years of mobile penetration became the the text messaging capital of the world.</p>
 					<p>Josefina T. Lichauco wrote an article <a href="The Philippine text messaging phenomenon">The Philippine text messaging phenomenon</a> it says that SMS (Short Message Service) has given rise to a subculture with its own lingo, folklore and etiquette. Fact is, in the Philippines, the words ‘I will call you’ have been replaced by ‘I will text you.’.
 					In my humber opinion, Filipinos prefer text messaging because it's cheaper than call and that calling someone with mobile phone is pricier than a single text message. Also, text message is a way to deliver a message without disturbing or wasting too much time with someone who is currently busy or at least informing him/her to
-					reply when he/she doesn`t want to talk to. I know lovers out there can relate to this.
+					reply when he/she doesn't want to talk to. I know lovers out there can relate to this.
 					</p>
 					<p>With the affordability and introduction of prepaid with no monthly fees it dramatically became popular and relevant to every day living. Ben Parr said in his 2010 article, <a href="http://mashable.com/2010/10/14/nielsen-texting-stats/#2WT11q0MxSqM">the average teenager sends 3,339 texts per month</a>. That's more than six texts per waking hour.</p>
 					<br />
@@ -53,6 +74,7 @@ export default React.createClass({
 					</ul>
 					<p>The technology also leads us to abbreaviating some of our commonly used pharses, although some of it have already been widely used in internet chat such as BRB, NASL, LOL, and 'anyari?' for 'anong nangyari?' (what happened?). Text linggo or SMS language has been around but some educators and individual do not prefer using them. But in this world,
 					there's only one thing is for sure -- constant change.</p>
+					<div style={{marginBottom: '40px'}}></div>
 				</div>
 		);
 	}
