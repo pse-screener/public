@@ -108,9 +108,9 @@ class SendFreeSMS extends Component {
 	}
 
 	onReset() {
-		const messageData = {...this.state.messageData};
-		messageData.phoneNo = '', messageData.message = ''; messageData['g-recaptcha-response'] = '';
-		this.setState({messageData});
+		/*const messageData = {...this.state.messageData};
+		messageData.phoneNo = ''; messageData.message = ''; messageData['g-recaptcha-response'] = '';
+		this.setState({messageData});*/
 	}
 
 	render() {
@@ -122,17 +122,17 @@ class SendFreeSMS extends Component {
 						<div className="col-sm-6">
 							{ this.state.showSpinner ? <Spinner /> : null}
                     		{ this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null }
-							<form onSubmit={this.handleSubmit} ref="formFreeSms">
-								<div className="col-sm-6 col-md-6" style={{marginTop: '15px'}}>
+							<form onSubmit={this.handleSubmit}>
+								<div style={{marginTop: '15px'}}>
                                     <input type="text" name="phoneNo" className="form-control" placeholder="Phone number *" value={this.state.messageData.phoneNo} onChange={this.handleInputChange} maxLength="11" />
                                 </div>
-                                <div className="col-xs-12" style={{marginTop: '15px'}}>
+                                <div style={{marginTop: '15px'}}>
                                     <textarea name="message" className="form-control" placeholder="Your message. *" rows="4" required="required" value={this.state.messageData.message} onChange={this.handleInputChange} resize="none" maxLength="160"></textarea>
                                 </div>
-                                <div className="col-xs-12" style={{marginTop: '15px'}}>
+                                <div style={{marginTop: '15px'}}>
                                 	<Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
                                 </div>
-                                 <div className="col-xs-12" style={{textAlign: 'center', marginTop: '15px'}}>
+                                 <div style={{textAlign: 'center', marginTop: '15px'}}>
                                     <input type="submit" className="btn btn-primary btn-lg" style={{marginRight: '7px'}} value="Send SMS" />
                                     <input type="button" className="btn btn-default btn-lg" value="Reset" onClick={this.onReset} />
                                 </div>
