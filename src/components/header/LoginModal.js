@@ -1,4 +1,3 @@
-// 'use strict';
 let React = window.React = require('react');
 import Alert from '../Alert';
 import { Link } from 'react-router';

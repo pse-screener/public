@@ -15,6 +15,7 @@ import ForgotPasswordReset from './components/forgotPassword/ForgotPasswordReset
 import PasswordResetSuccess from './components/forgotPassword/PasswordResetSuccess';
 import EmailConfirmation from './components/registration/EmailConfirmation';
 import Donate from './components/Donate';
+import SendFreeSMS from './components/SendFreeSMS';
 
 export default (  
   <Route name="app" path="/" handler={Home}>
@@ -22,6 +23,7 @@ export default (
     // Menu
     <Route name="home" path="/home" handler={HomeContents} />
     <Route name="services" path="/services" handler={Services} />
+    <Route name="sendFreeSMS" path="/sendFreeSMS" handler={SendFreeSMS} />
     <Route name="customers" path="/customers" handler={Customers} />
     <Route name="about" path="/about" handler={About} />
     <Route name="registration" path="/registration" handler={Registration} />

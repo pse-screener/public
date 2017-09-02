@@ -40,6 +40,15 @@ export default React.createClass({
 									This is similar to the price alert but in terms of volume traded during the day. (This is currently not available at the moment but keep in touch as we include this very soon in your admin page.)
 								</div>
 							</div>
+							<div className="media">
+								<div className="media-left">
+									<img className="media-object" src="public/images/SMS-icon.png" />
+								</div>
+								<div className="media-body">
+									<h4 className="media-heading">Send Free Txt</h4>
+									Got no load? Send free text here without registration, either Globe, Smart, Talk 'N Text, Sun, or Touch Mobile (TM). Isn't cool, cright? Click <strong><Link to="sendFreeSMS">here</Link></strong> to send text.
+								</div>
+							</div>
 						</div>
 					</div>
 					<br /><br />

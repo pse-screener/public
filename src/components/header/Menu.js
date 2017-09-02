@@ -10,7 +10,7 @@ class Menu extends Component {
 
         this.state = {
             homeCSS: (hash == "/" || hash == "/home") ? "active" : "",
-            servicesCSS: (hash == "/services") ? "active" : "",
+            servicesCSS: (hash == "/services" || hash == "/sendFreeSMS") ? "active" : "",
             customersCSS: (hash == "/customers") ? "active" : "",
             aboutCSS: (hash == "/about") ? "active" : "",
             contactUsCSS: (hash == "/contactUs") ? "active" : "",
@@ -81,7 +81,13 @@ class Menu extends Component {
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
                                 <li id="home" className={this.state.homeCSS} onClick={this._onClick.bind(null, 'home')}><Link to="home">Home <span className="sr-only">(current)</span></Link></li>
-                                <li id="services" className={this.state.servicesCSS} onClick={this._onClick.bind(null, 'services')} ref="services"><Link to="services">Services</Link></li>
+                                <li id="services" className={'dropdown ' + this.state.servicesCSS}>
+                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span className="caret"></span></a>
+                                    <ul className="dropdown-menu">
+                                    <li onClick={this._onClick.bind(null, 'services')}><Link to="services"><span className="glyphicon glyphicon-cog"></span> Services</Link></li>
+                                    <li onClick={this._onClick.bind(null, 'services')}><Link to="sendFreeSMS"><span className="glyphicon glyphicon-envelope"></span> Send Free SMS</Link></li>
+                                    </ul>
+                                </li>
                                 <li id="customers" className={this.state.customersCSS} onClick={this._onClick.bind(null, 'customers')}><Link to="customers">Customers</Link></li>
                                 <li id="about" className={this.state.aboutCSS} onClick={this._onClick.bind(null, 'about')}><Link to="about">About</Link></li>
                                 <li id="contactUs" className={this.state.contactUsCSS} onClick={this._onClick.bind(null, 'contactUs')}><Link to="contactUs">Contact Us</Link></li>
