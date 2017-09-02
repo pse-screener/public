@@ -140,7 +140,8 @@ class SendFreeSMS extends Component {
 						</div>
 						<div className="col-sm-6">
 							<b>Send text message to any of the following networks. Note that Talk 'N is also included.</b>
-							<img src="public/images/telcos_logo.jpg" />
+							<img src="public/images/telcos_logo-xs.jpg" className="telCo_logo-xs" />
+							<img src="public/images/telcos_logo.jpg" className="telCo_logo-sm" />
 						</div>
 					</div>
 			</div>

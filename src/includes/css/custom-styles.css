@@ -121,8 +121,29 @@ html, body {
     }
 }
 
+@media (max-width: 529px) {
+    img.telCo_logo-xs {
+      display: block;
+    }
+
+    img.telCo_logo-sm {
+      display: none;
+    }
+}
+
+@media (min-width: 529px) {
+    img.telCo_logo-xs {
+      display: none;
+    }
+
+    img.telCo_logo-sm {
+      display: block;
+    }
+}
+
+
 /* Landscape phone to portrait tablet */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     #push, #footer {
         height: 150px;
     }
