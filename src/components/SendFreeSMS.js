@@ -108,9 +108,9 @@ class SendFreeSMS extends Component {
 	}
 
 	onReset() {
-		/*const messageData = {...this.state.messageData};
+		const messageData = {...this.state.messageData};
 		messageData.phoneNo = ''; messageData.message = ''; messageData['g-recaptcha-response'] = '';
-		this.setState({messageData});*/
+		this.setState({messageData});
 	}
 
 	render() {
