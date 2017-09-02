@@ -84,6 +84,12 @@ class SendFreeSMS extends Component {
 			this.setState({alert, showSpinner: false});
 			return;
 		}
+		if (this.state.messageData.message.length > 160) {
+			alert = {...this.state.alert};
+			alert.showAlert = true; alert.alertMessage = 'Limit characters to 160 only.', alert.alertType = 'danger';
+			this.setState({alert, showSpinner: false});
+			return;
+		}
 
 		if (this.state.messageData['g-recaptcha-response'] === '') {
 			alert = {...this.state.alert};
@@ -118,10 +124,10 @@ class SendFreeSMS extends Component {
                     		{ this.state.alert.showAlert ? <Alert message={this.state.alert.alertMessage} alertType={this.state.alert.alertType} /> : null }
 							<form onSubmit={this.handleSubmit} ref="formFreeSms">
 								<div className="col-sm-6 col-md-6" style={{marginTop: '15px'}}>
-                                    <input type="text" name="phoneNo" className="form-control" placeholder="Phone number *" value={this.state.messageData.phoneNo} onChange={this.handleInputChange} />
+                                    <input type="text" name="phoneNo" className="form-control" placeholder="Phone number *" value={this.state.messageData.phoneNo} onChange={this.handleInputChange} maxLength="11" />
                                 </div>
                                 <div className="col-xs-12" style={{marginTop: '15px'}}>
-                                    <textarea name="message" className="form-control" placeholder="Your message. *" rows="4" required="required" value={this.state.messageData.message} onChange={this.handleInputChange} resize="none"></textarea>
+                                    <textarea name="message" className="form-control" placeholder="Your message. *" rows="4" required="required" value={this.state.messageData.message} onChange={this.handleInputChange} resize="none" maxLength="160"></textarea>
                                 </div>
                                 <div className="col-xs-12" style={{marginTop: '15px'}}>
                                 	<Recaptcha sitekey={publicVar.sitekey} render="explicit" onloadCallback={function() {}} verifyCallback={this.recaptchaVerifyCallback} />
