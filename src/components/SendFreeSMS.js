@@ -138,8 +138,9 @@ class SendFreeSMS extends Component {
                                 </div>
 							</form>
 						</div>
-						<div className="col-sm-6">
-							<b>Send text message to any of the following networks. Note that Talk 'N is also included.</b>
+						<div className="col-sm-6"><br />
+							<p>Send text message to anyone in the Philippines even if you are from abroad. No more registration needed just send that message right away to your loved ones to show you care.</p>
+							<p>We have created this app for all specially our fellow OFW's who have been working so hard outside the Philippines to give brighter future to their family.</p>
 							<img src="public/images/telcos_logo-xs.jpg" className="telCo_logo-xs" />
 							<img src="public/images/telcos_logo.jpg" className="telCo_logo-sm" />
 						</div>
