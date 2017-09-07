@@ -89,7 +89,7 @@ class Menu extends Component {
                                     </ul>
                                 </li>
                                 <li id="customers" className={this.state.customersCSS} onClick={this._onClick.bind(null, 'customers')}><Link to="customers">Customers</Link></li>
-                                <li id="about" className={this.state.aboutCSS} onClick={this._onClick.bind(null, 'about')}><Link to="about">About</Link></li>
+                                <li id="about" className={this.state.aboutCSS} onClick={this._onClick.bind(null, 'about')}><Link to="about">About Us</Link></li>
                                 <li id="contactUs" className={this.state.contactUsCSS} onClick={this._onClick.bind(null, 'contactUs')}><Link to="contactUs">Contact Us</Link></li>
                                 <li id="donate" className={this.state.donateCSS} onClick={this._onClick.bind(null, 'donate')}><Link to="donate">Donate</Link></li>
                             </ul>
