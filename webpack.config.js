@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 var API_URL = {
-    production: JSON.stringify('http://pse-screener.ml'),
+    production: JSON.stringify('http://pse-screener.sytes.net'),
     development: JSON.stringify('http://staging.pse-screener.ml')
 }
 
