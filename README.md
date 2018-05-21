@@ -1,12 +1,12 @@
-# pse
+# pse-screener
 
-### Installation instructions.
+##### Installation instructions.
 
 1. $ npm install
 2. $ gulp
 3. export NODE_ENV=development
 
-### Apache config
+##### Apache config dev
 
 ```
 <VirtualHost *:80>
@@ -38,16 +38,18 @@
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-=======
-1. $ npm install
-2. $ npm install -g gulp --save-dev
+```
+$ npm install
+$ npm install -g gulp --save-dev
+```
 
-### Run task in public folder.
-
+Run task in public folder every pull or changes to the codebase.
+```
 $ gulp
+```
 
 
 ##### Common Issues
 
-1. Note that you have to use the domain name not the IP address to access the page so that the reCaptcha will work. So update your hosts file in your windows OS. The name must also be same with <project_name>/admin/.../appConstantsFactory.js.
-2. sudo ln -s /usr/bin/nodejs /usr/bin/node - issue with node and nodejs.
+1. Note that you have to use the domain name not the IP address to access the page so that the reCaptcha will work. So update your hosts file in your windows OS. The name must also be same with `<project_name>/admin/.../appConstantsFactory.js`.
+2. `sudo ln -s /usr/bin/nodejs /usr/bin/node - issue with node and nodejs`.

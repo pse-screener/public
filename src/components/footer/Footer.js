@@ -9,7 +9,7 @@ export default React.createClass({
                     <div className="container">
                     	<div className="row">
 			                <div className="col-sm-2">
-			                    <h6>Copyright &copy; 2017</h6>
+			                    <h6>Copyright &copy; 2018</h6>
 			                </div>
 			                <div className="col-sm-2">
 			                    <h6>Navigation</h6>
