@@ -51,3 +51,12 @@ $ gulp
 
 1. Note that you have to use the domain name not the IP address to access the page so that the reCaptcha will work. So update your hosts file in your windows OS. The name must also be same with <project_name>/admin/.../appConstantsFactory.js.
 2. sudo ln -s /usr/bin/nodejs /usr/bin/node - issue with node and nodejs.
+3. Take note that `export` command is for every user.
+4. Issue in git pull
+```
+$ eval $(ssh-agent -s)
+Agent pid 59566
+
+ssh-add ~/.ssh/id_rsa
+```
+Change ~/.ssh/id_rsa with the location of the id_rsa.
