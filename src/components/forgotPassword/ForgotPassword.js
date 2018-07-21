@@ -26,14 +26,16 @@ export default React.createClass({
     },
     _onErrorEvent: function() {
     	//getStatus() returns object; no var holder
-    	this.state.displayAlert = true;
-        this.setState({ displayLoader: false,
-        	status: getStatus()
+    	// this.state.displayAlert = true;
+        this.setState({
+        	displayLoader: false,
+        	displayAlert: true,
+        	status: getStatus().message,
         });
     },
 	_onClick: function() {
 		this.state.status = {};
-		this.state.displayAlert = false;
+		this.state.displayLoaderert = false;
 		this.state.displayLoader = true;
 		let email = this.refs.email.value.trim();
 
@@ -41,8 +43,12 @@ export default React.createClass({
 			this.forceUpdate();
 
 		if (email.length < 6) {
-			this.state.status.statusDesc = "Please enter valid email address.";
-            this.state.displayAlert = true;
+			this.setState({
+				status: {statusDesc: "Please enter valid email address."},
+				displayAlert: true,
+			});
+			// this.state.status.statusDesc = "Please enter valid email address.";
+            // this.state.displayAlert = true;
         }
 
         if (this.state.displayAlert) {
@@ -55,7 +61,7 @@ export default React.createClass({
 	render: function() {
 		let renderAlert = null, renderLoader = null;
 		if (this.state.displayAlert)
-			renderAlert = (<Alert message={this.state.status.errorThrown} alertType="danger" />);
+			renderAlert = (<Alert message={this.state.status} alertType="danger" />);
 		if (this.state.displayLoader)
 			renderLoader = (<img style={{WebkitUserSelect: "none"}} src="public/images/ajax-loader-small.gif" />);
 
