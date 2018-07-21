@@ -4,7 +4,7 @@
 
 1. $ npm install
 2. $ gulp
-3. export NODE_ENV=development
+3. # `export NODE_ENV=development | production`
 
 ### Apache config
 
@@ -59,4 +59,4 @@ Agent pid 59566
 
 ssh-add ~/.ssh/id_rsa
 ```
-Change ~/.ssh/id_rsa with the location of the id_rsa.
+Change ~/.ssh/id_rsa with the location of the id_rsa using super user su.
